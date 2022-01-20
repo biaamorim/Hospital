@@ -1,14 +1,14 @@
 package domain;
 
 public class Pessoa {
-  private String id;
+  private int id;
   private String nome;
   private String cpf;
   private String numeroTelefone;
   private String endereco;
   private String sexo;
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
@@ -30,10 +30,6 @@ public class Pessoa {
 
   public String getSexo() {
     return sexo;
-  }
-
-  public void setId(String Id) {
-    this.id= Id;
   }
 
   public void setNome(String Nome) {
