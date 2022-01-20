@@ -1,13 +1,23 @@
 package domain;
 
 public class Pessoa {
+  private String id;
   private String nome;
+  private String cpf;
   private String numeroTelefone;
   private String endereco;
   private String sexo;
 
+  public String getId() {
+    return id;
+  }
+
   public String getNome() {
     return nome;
+  }
+
+  public String getCpf() {
+    return cpf;
   }
 
   public String getNumeroTelefone() {
@@ -22,8 +32,16 @@ public class Pessoa {
     return sexo;
   }
 
+  public void setId(String Id) {
+    this.id= Id;
+  }
+
   public void setNome(String Nome) {
     this.nome = Nome;
+  }
+
+  public void setCpf(String Cpf) {
+    this.cpf = Cpf;
   }
 
   public void setNumeroTelefone(String NumeroTelefone) {
