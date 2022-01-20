@@ -31,11 +31,7 @@ public class Paciente extends Pessoa {
   public String getEmail() {
     return email;
   }
-
-  public void setId(int Id) {
-    this.id = Id;
-  }
-
+  
   public void setDataNascimento(String DataNascimento) {
     this.dataNascimento = DataNascimento;
   }
