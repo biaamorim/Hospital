@@ -1,6 +1,8 @@
 package src.domain;
 
-public class Medico {
+import src.interfaces.IMedico;
+
+public class Medico implements IMedico {
     private int id;
     private String crm;
     private String[] especialidade;
@@ -50,5 +52,9 @@ public class Medico {
 
     public void setFimExpediente(float fimExpediente) {
         this.fimExpediente = fimExpediente;
+    }
+
+    public float calculaExpediente() {
+        return this.fimExpediente - this.inicioExpediente;
     }
 }
