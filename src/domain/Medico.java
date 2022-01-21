@@ -55,4 +55,10 @@ public class Medico extends Pessoa {
     public float calculaExpediente() {
         return this.fimExpediente - this.inicioExpediente;
     }
+
+    @Override
+    public Registro preencheRegistro(Registro registro) {
+        registro.setMedicoId(id);
+        return registro;
+    }
 }

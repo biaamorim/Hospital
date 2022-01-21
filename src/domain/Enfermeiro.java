@@ -33,4 +33,10 @@ public class Enfermeiro extends Pessoa {
     public void setExpediente(int expediente) {
         this.expediente = expediente;
     }
+
+    @Override
+    public Registro preencheRegistro(Registro registro) {
+        registro.setEnfermeiroId(id);
+        return registro;
+    }
 }

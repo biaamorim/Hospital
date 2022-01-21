@@ -51,4 +51,10 @@ public class Paciente extends Pessoa {
   public void setEmail(String email) {
     this.email = email;
   }
+
+  @Override
+  public Registro preencheRegistro(Registro registro) {
+    registro.setPacienteId(id);
+    return registro;
+  }
 }
