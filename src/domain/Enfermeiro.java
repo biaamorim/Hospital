@@ -1,43 +1,36 @@
 package src.domain;
 
-public class Enfermeiro {
+public class Enfermeiro extends Pessoa {
     private  int id ;
-    private  String tipodeEquipe;
-    private  boolean issupervisor;
+    private  String tipoEquipe;
+    private  boolean eSupervisor;
     private  int expediente ;
-
 
     public int getId() {
         return id;
     }
 
-    public String getTipodeEquipe() {
-        return tipodeEquipe;
+    public String getTipoEquipe() {
+        return tipoEquipe;
     }
 
     public int getExpediente() {
         return expediente;
     }
 
-    public boolean isIssupervisor() {
-        return issupervisor;
+    public boolean getESupervisor() {
+        return eSupervisor;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTipoEquipe(String tipoEquipe) {
+        this.tipoEquipe = tipoEquipe;
     }
 
-    public void setTipodeEquipe(String tipodeEquipe) {
-        this.tipodeEquipe = tipodeEquipe;
-    }
-
-    public void setIssupervisor(boolean issupervisor) {
-        this.issupervisor = issupervisor;
+    public void setESupervisor(boolean eSupervisor) {
+        this.eSupervisor = eSupervisor;
     }
 
     public void setExpediente(int expediente) {
         this.expediente = expediente;
     }
-
-
 }
