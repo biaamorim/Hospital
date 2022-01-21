@@ -1,4 +1,4 @@
-package domain;
+package src.domain;
 
 public class Paciente extends Pessoa {
   private int id;
@@ -32,23 +32,23 @@ public class Paciente extends Pessoa {
     return email;
   }
   
-  public void setDataNascimento(String DataNascimento) {
-    this.dataNascimento = DataNascimento;
+  public void setDataNascimento(String dataNascimento) {
+    this.dataNascimento = dataNascimento;
   }
 
-  public void setCor(String Cor) {
-    this.cor = Cor;
+  public void setCor(String cor) {
+    this.cor = cor;
   }
 
-  public void setDataCadastro(String DataCadastro) {
-    this.dataCadastro = DataCadastro;
+  public void setDataCadastro(String dataCadastro) {
+    this.dataCadastro = dataCadastro;
   }
 
-  public void setFiliacao(String Filiacao) {
-    this.filiacao = Filiacao;
+  public void setFiliacao(String filiacao) {
+    this.filiacao = filiacao;
   }
 
-  public void setEmail(String Email) {
-    this.email = Email;
+  public void setEmail(String email) {
+    this.email = email;
   }
 }

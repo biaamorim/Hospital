@@ -1,8 +1,6 @@
 package src.domain;
 
-import src.interfaces.IMedico;
-
-public class Medico implements IMedico {
+public class Medico extends Pessoa {
     private int id;
     private String crm;
     private String[] especialidade;

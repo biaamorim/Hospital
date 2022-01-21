@@ -2,7 +2,7 @@ package src.domain;
 
 public class Atendimento {
      private int id;
-     private String  tipodeAtendimento;
+     private String  tipoAtendimento;
      private int idMedico ;
      private int idEnfermeiro ;
 
@@ -10,8 +10,8 @@ public class Atendimento {
         return id;
     }
 
-    public String getTipodeAtendimento() {
-        return tipodeAtendimento;
+    public String getTipoAtendimento() {
+        return tipoAtendimento;
     }
 
     public int getIdMedico() {
@@ -30,8 +30,8 @@ public class Atendimento {
         this.idMedico = idMedico;
     }
 
-    public void setTipodeAtendimento(String tipodeAtendimento) {
-        this.tipodeAtendimento = tipodeAtendimento;
+    public void setTipoAtendimento(String tipoAtendimento) {
+        this.tipoAtendimento = tipoAtendimento;
     }
 
     public void setIdEnfermeiro(int idEnfermeiro) {

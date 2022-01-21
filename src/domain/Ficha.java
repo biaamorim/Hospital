@@ -1,8 +1,6 @@
 package src.domain;
 
-import src.interfaces.IFicha;
-
-public class Ficha implements IFicha {
+public class Ficha {
     private int id;
     private String descricao;
     private String dataRegistro;
