@@ -1,16 +1,15 @@
 package src.domain;
 
 public class Ficha {
-    private int id;
+    private int    id;
     private String descricao;
     private String dataRegistro;
-    private int pacienteId;
-    private int atendimentoId;
-
+    private String tipoAtendimento;
+    
     public int getId() {
         return id;
     }
-
+    
     public String getDescricao() {
         return descricao;
     }
@@ -19,12 +18,8 @@ public class Ficha {
         return dataRegistro;
     }
 
-    public int getPacienteId() {
-        return pacienteId;
-    }
-
-    public int getAtendimentoId() {
-        return atendimentoId;
+    public String getTipoAtendimento() {
+        return tipoAtendimento;
     }
 
     public void setDescricao(String descricao) {
@@ -35,11 +30,7 @@ public class Ficha {
         this.dataRegistro = dataRegistro;
     }
 
-    public void setPacienteId(int pacienteId) {
-        this.pacienteId = pacienteId;
-    }
-
-    public void setAtendimentoId(int atendimentoId) {
-        this.atendimentoId = atendimentoId;
+    public void setTipoAtendimento(String tipoAtendimento) {
+        this.tipoAtendimento = tipoAtendimento;
     }
 }

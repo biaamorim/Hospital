@@ -1,6 +1,6 @@
 package src.domain;
 
-public class Pessoa {
+public abstract class Pessoa {
   private String nome;
   private String cpf;
   private String numeroTelefone;
@@ -46,4 +46,6 @@ public class Pessoa {
   public void setSexo(String sexo) {
     this.sexo = sexo;
   }
+
+  public abstract Registro preencheRegistro(Registro registro);
 }
