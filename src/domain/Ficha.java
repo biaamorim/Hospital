@@ -1,10 +1,15 @@
 package src.domain;
 
 public class Ficha {
+    private int    id;
     private String descricao;
     private String dataRegistro;
     private String tipoAtendimento;
-
+    
+    public int getId() {
+        return id;
+    }
+    
     public String getDescricao() {
         return descricao;
     }
