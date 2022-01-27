@@ -7,6 +7,14 @@ public class Registro {
     private int enfermeiroId;
     private int fichaId;
 
+    public Registro(int id, int pacienteId, int medicoId, int enfermeiroId, int fichaId) {
+        this.id = id;
+        this.pacienteId = pacienteId;
+        this.medicoId = medicoId;
+        this.enfermeiroId = enfermeiroId;
+        this.fichaId = fichaId;
+    }
+
     public int getId() {
         return id;
     }
