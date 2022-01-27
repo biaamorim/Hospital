@@ -8,6 +8,18 @@ public class Medico extends Pessoa {
     private float inicioExpediente;
     private float fimExpediente;
 
+    public Medico(String nome, String cpf, String numeroTelefone, String endereco,
+    String sexo, int id, String crm, String[] especialidade, String[] diasPlantao,
+    float inicioExpediente, float fimExpediente) {
+        super(nome, cpf, numeroTelefone, endereco, sexo);
+        this.id = id;
+        this.crm = crm;
+        this.especialidade = especialidade;
+        this.diasPlantao = diasPlantao;
+        this.inicioExpediente = inicioExpediente;
+        this.fimExpediente = fimExpediente;
+    }
+
     public int getId() {
         return id;
     }

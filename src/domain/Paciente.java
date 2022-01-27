@@ -8,6 +8,10 @@ public class Paciente extends Pessoa {
   private String filiacao;
   private String email;
 
+  public Paciente(String nome, String cpf, String numeroTelefone, String endereco, String sexo) {
+    super(nome, cpf, numeroTelefone, endereco, sexo);
+  }
+
   public int getId() {
     return id;
   }

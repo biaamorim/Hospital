@@ -7,6 +7,15 @@ public abstract class Pessoa {
   private String endereco;
   private String sexo;
 
+  public Pessoa(String nome, String cpf, String numeroTelefone, String endereco,
+  String sexo) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.numeroTelefone = numeroTelefone;
+    this.endereco = endereco;
+    this.sexo = sexo;
+  }
+
   public String getNome() {
     return nome;
   }
