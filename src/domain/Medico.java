@@ -4,18 +4,18 @@ public class Medico extends Pessoa {
     private int id;
     private String crm;
     private String[] especialidade;
-    private String[] diasPlantao;
+    private String[] diaPlantao;
     private float inicioExpediente;
     private float fimExpediente;
 
     public Medico(String nome, String cpf, String numeroTelefone, String endereco,
-    String sexo, int id, String crm, String[] especialidade, String[] diasPlantao,
+    String sexo, int id, String crm, String[] especialidade, String[] diaPlantao,
     float inicioExpediente, float fimExpediente) {
         super(nome, cpf, numeroTelefone, endereco, sexo);
         this.id = id;
         this.crm = crm;
         this.especialidade = especialidade;
-        this.diasPlantao = diasPlantao;
+        this.diaPlantao = diaPlantao;
         this.inicioExpediente = inicioExpediente;
         this.fimExpediente = fimExpediente;
     }
@@ -32,8 +32,8 @@ public class Medico extends Pessoa {
         return especialidade;
     }
 
-    public String[] getDiasPlantao() {
-        return diasPlantao;
+    public String[] getDiaPlantao() {
+        return diaPlantao;
     }
 
     public float getInicioExpediente() {
@@ -52,8 +52,8 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
     }
 
-    public void setDiasPlantao(String[] diasPlantao) {
-        this.diasPlantao = diasPlantao;
+    public void setDiaPlantao(String[] diaPlantao) {
+        this.diaPlantao = diaPlantao;
     }
 
     public void setInicioExpediente(float inicioExpediente) {
