@@ -1,15 +1,22 @@
 package src.domain;
 
 public class Ficha {
-    private int    id;
+    private int id;
     private String descricao;
     private String dataRegistro;
     private String tipoAtendimento;
-    
+
+    public Ficha(int id, String descricao, String dataRegistro, String tipoAtendimento) {
+        this.id = id;
+        this.descricao = descricao;
+        this.dataRegistro = dataRegistro;
+        this.tipoAtendimento = tipoAtendimento;
+    }
+
     public int getId() {
         return id;
     }
-    
+
     public String getDescricao() {
         return descricao;
     }
