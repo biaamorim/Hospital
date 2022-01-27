@@ -8,8 +8,14 @@ public class Paciente extends Pessoa {
   private String filiacao;
   private String email;
 
-  public Paciente(String nome, String cpf, String numeroTelefone, String endereco, String sexo) {
+  public Paciente(int id, String dataNascimento, String cor, String dataCadastro, String filiacao, String email, String nome, String cpf, String numeroTelefone, String endereco, String sexo) {
     super(nome, cpf, numeroTelefone, endereco, sexo);
+    this.id = id;
+    this.dataNascimento = dataNascimento;
+    this.cor = cor;
+    this.dataCadastro = dataCadastro;
+    this.filiacao = filiacao;
+    this.email = email;
   }
 
   public int getId() {
