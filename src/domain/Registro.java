@@ -1,7 +1,7 @@
 package src.domain;
 
 public class Registro {
-    private int id;
+    private final int id;
     private int pacienteId;
     private int medicoId;
     private int enfermeiroId;

@@ -1,7 +1,7 @@
 package src.domain;
 
 public class Ficha {
-    private int id;
+    private final int id;
     private String descricao;
     private String dataRegistro;
     private String tipoAtendimento;

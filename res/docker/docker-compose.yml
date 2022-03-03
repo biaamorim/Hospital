@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  db:
+    build:
+      dockerfile: ./docker/image/Dockerfile
+      context: "../"
+    restart: always
+    container_name: hospital_db
+    environment:
+      MYSQL_DATABASE: 'hospital_db'
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: '12345678'
+      MYSQL_ROOT_PASSWORD: 'root_password'
+    ports:
+      - '3306:3306'
+    networks:
+        - hospital
+
+networks:
+  hospital:
+    driver: bridge
