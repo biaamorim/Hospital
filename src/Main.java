@@ -1,8 +1,6 @@
-import config.ProvedorPostgres;
-import dao.medicoDao;
+import dao.MedicoDAO;
 import domain.Medico;
 
-import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
@@ -27,8 +25,10 @@ public class Main {
                 }
                 case 3 -> {
                     opcao = mostrarCadastroNovoUsuario(scan);
+                    opcao = trataCadastroNovoUsuario(opcao);
                 }
                 case 4 -> {
+                    System.out.println("\n");
                 }
             }
         } while (opcao != 0);
@@ -49,10 +49,10 @@ public class Main {
     public static int mostraMedicoOperacao(Scanner scan) {
         System.out.println("------------------- Operações de Médico -------------------");
         System.out.println("O que você deseja fazer hoje?");
-        System.out.println("1- Ver Paciente;");
-        System.out.println("2- Ver ficha;");
-        System.out.println("3- Ver Registro;");
-        System.out.println("4- Ver Perfil;");
+        System.out.println("1- Ver Pacientes;");
+        System.out.println("2- Ver fichas;");
+        System.out.println("3- Ver Registros;");
+        System.out.println("4- Ver Perfis;");
         System.out.println("5- Preencher registro médico;");
         System.out.println("6- Atualizar dados pessoais;");
         System.out.println("7- Remover Conta;");
@@ -68,7 +68,7 @@ public class Main {
                 break;
             }
             case 0: {
-                return 0;
+                return 4;
             }
             case 1: {
             }
@@ -91,12 +91,12 @@ public class Main {
     public static int mostraEnfermeiroOperacao(Scanner scan) {
         System.out.println("------------------- Operações de Enfermeiro -------------------");
         System.out.println("O que voce deseja?");
-        System.out.println("1- Ver Paciente;");
-        System.out.println("2- Ver ficha;");
-        System.out.println("3- Ver Registro;");
-        System.out.println("4- Ver Perfil;");
+        System.out.println("1- Ver Pacientes;");
+        System.out.println("2- Ver fichas;");
+        System.out.println("3- Ver Registros;");
+        System.out.println("4- Ver Perfis;");
         System.out.println("5- Cadastrar ficha;");
-        System.out.println("6- Cadastrar Paciente!;");
+        System.out.println("6- Cadastrar Paciente;");
         System.out.println("7- Preencher registro médico");
         System.out.println("8- Atualizar dados pessoais;");
         System.out.println("9- Remover conta;");
@@ -151,12 +151,13 @@ public class Main {
                 mostraErroUsuario();
             }
             case 0 -> {
-                return 0;
+                return 4;
             }
             case 1 -> {
-                medicoDao medicoDao = new medicoDao();
-                Medico medico = medicoDao.cadastraMedico(null);
-                System.out.printf("Médico cadastrado com sucesso. Este é o seu id: %d", medico.getId());
+                MedicoDAO medicoDao = new MedicoDAO();
+                Medico medico = medicoDao.preencheMedico();
+                medicoDao.cadastraMedico(medico);
+                System.out.println("Médico cadastrado com sucesso.");
             }
             case 2 -> {
             }
