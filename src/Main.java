@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Connection conn = null;
+        Provedor provedor = new Provedor();
+        conn = provedor.pegaConexao();
+
         Scanner scan = new Scanner(System.in);
         int opcao;
         do {
@@ -26,6 +30,9 @@ public class Main {
                 }
                 case 3: {
                     opcao = mostrarCadastroNovoUsuario(scan, opcao);
+                    break;
+                }
+                case 4: {
                     break;
                 }
             }
@@ -59,6 +66,33 @@ public class Main {
         opcao = scan.nextInt();
     }
 
+    public static int trataMedicoOperacao(int opcao) {
+        switch (opcao) {
+            default: {
+                mostraErroUsuario();
+                break;
+            }
+            case 0: {
+                return 0;
+                break;
+            }
+            case 1: {
+            }
+            case 2: {
+            }
+            case 3: {
+            }
+            case 4: {
+            }
+            case 5: {
+            }
+            case 6: {
+            }
+            case 7: {
+            }
+        }
+    }
+
     public static int mostraEnfermeiroOperacao(Scanner scan, int opcao) {
         System.out.println("------------------- Operações de Enfermeiro -------------------");
         System.out.println("O que voce deseja?");
@@ -75,6 +109,35 @@ public class Main {
         opcao = scan.nextInt();
     }
 
+    public static int trataEnfermeiroOperacao(int opcao) {
+        switch (opcao) {
+            default: {
+                mostraErroUsuario();
+                break;
+            }
+            case 0: {
+            }
+            case 1: {
+            }
+            case 2: {
+            }
+            case 3: {
+            }
+            case 4: {
+            }
+            case 5: {
+            }
+            case 6: {
+            }
+            case 7: {
+            }
+            case 8: {
+            }
+            case 9: {
+            }
+        }
+    }
+
     public static int mostrarCadastroNovoUsuario(Scanner scan, int opcao) {
         System.out.println("------------------- Operações de Novo usuário -------------------");
         System.out.println("O que voce deseja?");
@@ -83,6 +146,21 @@ public class Main {
         System.out.println("------------------------------------------------");
         System.out.println("0- Sair do menu;");
         opcao = scan.nextInt();
+    }
+
+    public static void trataCadastroNovoUsuario(int opcao) {
+        switch (opcao) {
+            default: {
+                mostraErroUsuario();
+                break;
+            }
+            case 0: {
+            }
+            case 1: {
+            }
+            case 2: {
+            }
+        }
     }
 
     public static void mostraErroUsuario() {

@@ -1,6 +1,7 @@
 package src.domain;
 
 public class Paciente extends Pessoa {
+
     private final int id;
     private String dataNascimento;
     private String cor;
@@ -9,7 +10,7 @@ public class Paciente extends Pessoa {
     private String email;
 
     public Paciente(String nome, String cpf, String numeroTelefone, String endereco, String sexo,
-                    int id, String dataNascimento, String cor, String dataCadastro, String filiacao, String email) {
+            int id, String dataNascimento, String cor, String dataCadastro, String filiacao, String email) {
         super(nome, cpf, numeroTelefone, endereco, sexo);
         this.id = id;
         this.dataNascimento = dataNascimento;
@@ -63,9 +64,4 @@ public class Paciente extends Pessoa {
         this.email = email;
     }
 
-    @Override
-    public Registro preencheRegistro(Registro registro) {
-        registro.setPacienteId(id);
-        return registro;
-    }
 }

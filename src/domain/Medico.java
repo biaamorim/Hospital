@@ -9,8 +9,8 @@ public class Medico extends Pessoa {
     private float fimExpediente;
 
     public Medico(String nome, String cpf, String numeroTelefone, String endereco, String sexo,
-                  int id, String crm, String[] especialidade, String[] diaPlantao, float inicioExpediente,
-                  float fimExpediente) {
+            int id, String crm, String[] especialidade, String[] diaPlantao, float inicioExpediente,
+            float fimExpediente) {
         super(nome, cpf, numeroTelefone, endereco, sexo);
         this.id = id;
         this.crm = crm;
@@ -66,11 +66,5 @@ public class Medico extends Pessoa {
 
     public float calculaExpediente() {
         return this.fimExpediente - this.inicioExpediente;
-    }
-
-    @Override
-    public Registro preencheRegistro(Registro registro) {
-        registro.setMedicoId(id);
-        return registro;
     }
 }

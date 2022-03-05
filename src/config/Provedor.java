@@ -6,30 +6,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexao {
-    public @Nullable Connection pegaConexao() {
+public class Provedor {
+    public Connection pegaConexao() throws ClassNotFoundException, SQLException {
+        Connection connection = null;
+
         final String driver = "com.mysql.cj.jdbc.Driver";
         final String url = "jdbc:mysql//localhost:3306/hospital_db";
         final String user = "mysql";
         final String password = "12345678";
 
-        try {
-            Class.forName(driver);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Class.forName(driver);
 
-        try {
-            return DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connection = DriverManager.getConnection(url, user, password);
 
-        return null;
+        return connection;
     }
 
     public void fechaConexao(Connection conn) {
-       if (conn != null) {
+        if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {
