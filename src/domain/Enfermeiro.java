@@ -1,4 +1,4 @@
-package src.domain;
+package domain;
 
 public class Enfermeiro extends Pessoa {
     private final int id;

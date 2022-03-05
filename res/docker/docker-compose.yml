@@ -1,20 +1,23 @@
-version: '3.3'
+version: '3'
+
 services:
+
   db:
     build:
       dockerfile: ./docker/image/Dockerfile
       context: "../"
-    restart: always
-    container_name: hospital_db
+
     environment:
-      MYSQL_DATABASE: 'hospital_db'
-      MYSQL_USER: 'mysql'
-      MYSQL_PASSWORD: '12345678'
-      MYSQL_ROOT_PASSWORD: 'root_password'
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+
+    container_name: hospital_db
+
     ports:
-      - '3306:3306'
+      - "5432:5432"
+
     networks:
-        - hospital
+      - hospital
 
 networks:
   hospital:
