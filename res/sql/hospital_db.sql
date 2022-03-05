@@ -8,7 +8,7 @@ CREATE TABLE pessoa
     id              SERIAL PRIMARY KEY,
     cpf             VARCHAR(15),
     nome            VARCHAR(100),
-    numero_Telefone VARCHAR(10),
+    numero_telefone VARCHAR(10),
     endereco        VARCHAR(100),
     sexo            VARCHAR(20)
 );
@@ -38,8 +38,6 @@ CREATE TABLE medico
     crm               VARCHAR(25) NOT NULL,
     especialidade     VARCHAR(50) NOT NULL,
     dia_plantao       VARCHAR(20) NOT NULL,
-    inicio_Expediente TIMESTAMP   NOT NULL,
-    fim_Expediente    TIMESTAMP   NOT NULL,
 
     --- chaves estrangeiras ---
     pessoa_medico_id INT NOT NULL,
@@ -54,7 +52,7 @@ CREATE TABLE paciente
 (
     --- atributos ---
     id_paciente     SERIAL PRIMARY KEY,
-    data_Nascimento DATE        NOT NULL,
+    data_nascimento DATE        NOT NULL,
     cor             VARCHAR(15) NOT NULL,
     filiacao        VARCHAR(50) NOT NULL,
     email           VARCHAR(50) NOT NULL,
@@ -83,10 +81,10 @@ CREATE TABLE registro
     id_registro   SERIAL PRIMARY KEY,
 
     --- chaves estrangeiras ---
-    paciente_Id   INT NOT NULL,
-    medico_Id     INT NOT NULL,
-    enfermeiro_Id INT NOT NULL,
-    ficha_Id      INT NOT NULL,
+    paciente_id   INT NOT NULL,
+    medico_id     INT NOT NULL,
+    enfermeiro_id INT NOT NULL,
+    ficha_id      INT NOT NULL,
 
     --- constraints ---
     CONSTRAINT registro_paciente_fk
@@ -94,14 +92,14 @@ CREATE TABLE registro
             REFERENCES paciente (id_paciente),
 
     CONSTRAINT registro_medico_fk
-        FOREIGN KEY (medico_Id)
+        FOREIGN KEY (medico_id)
             REFERENCES medico (id_medico),
 
     CONSTRAINT registro_enfermeiro_fk
-        FOREIGN KEY (enfermeiro_Id)
+        FOREIGN KEY (enfermeiro_id)
             REFERENCES enfermeiro (id_enfermeiro),
 
     CONSTRAINT registro_ficha_fk
-        FOREIGN KEY (ficha_Id)
+        FOREIGN KEY (ficha_id)
             REFERENCES ficha (id_ficha)
 );

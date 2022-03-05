@@ -1,14 +1,12 @@
 import config.ProvedorPostgres;
+import dao.medicoDao;
+import domain.Medico;
 
 import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Connection conn;
-        ProvedorPostgres provedor = new ProvedorPostgres();
-        conn = provedor.pegaConexao();
-
         Scanner scan = new Scanner(System.in);
         int opcao;
         do {
@@ -147,19 +145,23 @@ public class Main {
         return scan.nextInt();
     }
 
-    public static void trataCadastroNovoUsuario(int opcao) {
+    public static int trataCadastroNovoUsuario(int opcao) {
         switch (opcao) {
-            default: {
+            default -> {
                 mostraErroUsuario();
-                break;
             }
-            case 0: {
+            case 0 -> {
+                return 0;
             }
-            case 1: {
+            case 1 -> {
+                medicoDao medicoDao = new medicoDao();
+                Medico medico = medicoDao.cadastraMedico(null);
+                System.out.printf("Médico cadastrado com sucesso. Este é o seu id: %d", medico.getId());
             }
-            case 2: {
+            case 2 -> {
             }
         }
+        return 4;
     }
 
     public static void mostraErroUsuario() {

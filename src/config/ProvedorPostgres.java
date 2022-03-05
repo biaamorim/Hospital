@@ -9,7 +9,7 @@ public class ProvedorPostgres {
         Connection connection = null;
 
         final String driver = "org.postgresql.Driver";
-        final String url = "jdbc:postgres//localhost:5432/hospital_db";
+        final String url = "jdbc:postgresql://localhost:5432/hospital_db";
         final String user = "postgres";
         final String password = "12345678";
 
