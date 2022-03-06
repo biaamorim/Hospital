@@ -19,6 +19,7 @@ public class Main {
                 }
                 case 1 -> {
                     opcao = mostraMedicoOperacao(scan);
+                    opcao = trataMedicoOperacao(opcao);
                 }
                 case 2 -> {
                     opcao = mostraEnfermeiroOperacao(scan);
@@ -63,26 +64,40 @@ public class Main {
 
     public static int trataMedicoOperacao(int opcao) {
         switch (opcao) {
-            default: {
+            default -> {
                 mostraErroUsuario();
-                break;
             }
-            case 0: {
+            case 0 -> {
                 return 4;
             }
-            case 1: {
+            /* case 1 -> {
             }
-            case 2: {
+            case 2 -> {
             }
-            case 3: {
+            case 3-> {
+            } */
+            case 4-> {
+                MedicoDAO medicoDAO = new MedicoDAO();
+                medicoDAO.listaMedicos();
+            } /*
+            case 5 -> {
+            } */
+            case 6 -> {
+                MedicoDAO medicoDAO = new MedicoDAO();
+                Scanner scan = new Scanner(System.in);
+                System.out.println("Insira o id do médico a atualizar: ");
+                int id = scan.nextInt();
+                Medico medico = medicoDAO.preencheMedico();
+                medicoDAO.atualizaMedico(medico, id);
+                System.out.println("O médico foi atualizado com sucesso!");
             }
-            case 4: {
-            }
-            case 5: {
-            }
-            case 6: {
-            }
-            case 7: {
+            case 7 -> {
+                MedicoDAO medicoDAO = new MedicoDAO();
+                Scanner scan = new Scanner(System.in);
+                System.out.println("Insira o id do médico a atualizar: ");
+                int id = scan.nextInt();
+                medicoDAO.removeMedico(id);
+                System.out.println("Médico removido com sucesso!");
             }
         }
         return opcao;
