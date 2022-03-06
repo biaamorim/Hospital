@@ -1,6 +1,5 @@
-package src.domain;
+package domain;
 
-import java.util.Date;
 public class Ficha {
     private final int id;
     private String descricao;

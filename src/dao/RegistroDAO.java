@@ -40,7 +40,7 @@ public class RegistroDAO implements DAOInterface {
             resultSet = pstm.executeQuery();
             while (resultSet.next()) {
                 Registro registro = new Registro(resultSet.getInt("id"), resultSet.getString("nome_paciente"), resultSet.getString("tipo_atendimento"),
-                                                resultSet.getDate("dia_atendimento"), resultSet.getString("area_atendimento"), resultSet.getString("nome_medico"),
+                                                resultSet.getString("dia_atendimento"), resultSet.getString("area_atendimento"), resultSet.getString("nome_medico"),
                                                 resultSet.getString("nome_enfermeiro"));
                 registros.add(registro);
             }

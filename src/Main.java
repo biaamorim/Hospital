@@ -1,8 +1,6 @@
-import dao.EnfermeiroDAO;
-import dao.MedicoDAO;
-import dao.PacienteDAO;
-import dao.RegistroDAO;
+import dao.*;
 import domain.Enfermeiro;
+import domain.Ficha;
 import domain.Medico;
 import domain.Paciente;
 import org.jetbrains.annotations.NotNull;
@@ -73,8 +71,11 @@ public class Main {
                     paciente.lista();
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
-            /* case 2 -> {
-            } */
+            case 2 -> {
+                    FichaDAO ficha = new FichaDAO();
+                    ficha.lista();
+                    opcaoLocal = mostrarCadastroNovoUsuario(scan);
+            }
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.lista();
@@ -125,6 +126,8 @@ public class Main {
         System.out.println("7- Preencher registro médico");
         System.out.println("8- Atualizar dados pessoais;");
         System.out.println("9- Remover conta;");
+        System.out.println("10- Atualizar ficha;");
+        System.out.println("11- Excluir ficha;");
         System.out.println("------------------------------------------------");
         System.out.println("Digite 0 se desejar sair do menu.");
         return scan.nextInt();
@@ -146,8 +149,11 @@ public class Main {
                      paciente.lista();
                      opcaoLocal = mostraMedicoOperacao(scan);
                 }
-            /* case 2 -> {
-            } */
+             case 2 -> {
+                 FichaDAO fichaDAO = new FichaDAO();
+                 fichaDAO.lista();
+                 opcaoLocal = mostraEnfermeiroOperacao(scan);
+            }
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.lista();
@@ -159,6 +165,11 @@ public class Main {
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
                 case 5 -> {
+                    FichaDAO fichaDAO = new FichaDAO();
+                    Ficha ficha = fichaDAO.preencheFicha();
+                    fichaDAO.cadastraFicha(ficha);
+                    System.out.println("Ficha cadastrada com sucesso!");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
                 case 6 -> {
                     PacienteDAO pacienteDAO = new PacienteDAO();
@@ -188,6 +199,23 @@ public class Main {
                     int id = scan.nextInt();
                     enfermeiroDAO.remove(id);
                     System.out.println("Enfermeiro removido com sucesso!");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 10 -> {
+                    FichaDAO fichaDAO = new FichaDAO();
+                    System.out.println("Insira o id da ficha que deseja atualizar: ");
+                    int id = scan.nextInt();
+                    Ficha ficha = fichaDAO.preencheFicha();
+                    fichaDAO.atualizaFicha(ficha, id);
+                    System.out.println("A ficha foi atualizada com sucesso!");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 11 -> {
+                    FichaDAO fichaDAO = new FichaDAO();
+                    System.out.println("Insira o id da ficha que deseja excluir: ");
+                    int id = scan.nextInt();
+                    fichaDAO.remove(id);
+                    System.out.println("Ficha excluída com sucesso! ");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
             }

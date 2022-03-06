@@ -6,12 +6,12 @@ public class Registro {
     private final int id;
     private String nomePaciente;
     private String tipoAtendimento;
-    private Date diaAtendimento;
+    private String diaAtendimento;
     private String areaAtendimento;
     private String nomeMedico;
     private String nomeEnfermeiro;
 
-    public Registro(int id, String nomePaciente, String tipoAtendimento, Date diaAtendimento,
+    public Registro(int id, String nomePaciente, String tipoAtendimento,String diaAtendimento,
                     String areaAtendimento, String nomeMedico, String nomeEnfermeiro) {
         this.id = id;
         this.nomePaciente = nomePaciente;
@@ -34,7 +34,7 @@ public class Registro {
         return tipoAtendimento;
     }
 
-    public Date getDiaAtendimento() {
+    public String getDiaAtendimento() {
         return diaAtendimento;
     }
 
@@ -58,7 +58,7 @@ public class Registro {
         this.tipoAtendimento = tipoAtendimento;
     }
 
-    public void setDiaAtendimento(Date diaAtendimento) {
+    public void setDiaAtendimento(String diaAtendimento) {
         this.diaAtendimento = diaAtendimento;
     }
 
