@@ -51,15 +51,15 @@ public class MedicoDAO {
                          INNER JOIN pessoa p on m.pessoa_medico_id = p.id;""";
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
-        ResultSet rset;
+        ResultSet resultSet;
         List<Medico> medicos = new ArrayList<>();
         try {
             pstm = conn.prepareStatement(medicoQuery);
-            rset = pstm.executeQuery();
-            while (rset.next()) {
-                Medico medico = new Medico(rset.getString("nome"), rset.getString("cpf"), rset.getString("telefone"),
-                        rset.getString("endereco"), rset.getString("sexo"), rset.getInt("id"), rset.getString("crm"),
-                        rset.getString("especialidade"), rset.getString("dia_plantao"));
+            resultSet = pstm.executeQuery();
+            while (resultSet.next()) {
+                Medico medico = new Medico(resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("telefone"),
+                        resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"), resultSet.getString("crm"),
+                        resultSet.getString("especialidade"), resultSet.getString("dia_plantao"));
                 medicos.add(medico);
             }
             for (Medico medico : medicos) {
@@ -75,6 +75,10 @@ public class MedicoDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
         }
     }
 
@@ -103,6 +107,10 @@ public class MedicoDAO {
             pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
         }
     }
 
@@ -132,6 +140,10 @@ public class MedicoDAO {
             pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
         }
     }
 
@@ -153,6 +165,10 @@ public class MedicoDAO {
             pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
         }
     }
 }

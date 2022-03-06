@@ -1,5 +1,8 @@
+import dao.EnfermeiroDAO;
 import dao.MedicoDAO;
 import dao.PacienteDAO;
+import dao.RegistroDAO;
+import domain.Enfermeiro;
 import domain.Medico;
 import domain.Paciente;
 
@@ -20,16 +23,13 @@ public class Main {
                     System.out.println("Volte mais vezes!");
                 }
                 case 1 -> {
-                    opcao = mostraMedicoOperacao(scan);
-                    opcao = trataMedicoOperacao(opcao);
+                    opcao = trataMedicoOperacao();
                 }
                 case 2 -> {
-                    opcao = mostraEnfermeiroOperacao(scan);
-                    opcao = trataEnfermeiroOperacao(opcao);
+                    opcao = trataEnfermeiroOperacao();
                 }
                 case 3 -> {
-                    opcao = mostrarCadastroNovoUsuario(scan);
-                    opcao = trataCadastroNovoUsuario(opcao);
+                    opcao = trataCadastroNovoUsuario();
                 }
                 case 4 -> {
                     System.out.println("\n");
@@ -65,50 +65,61 @@ public class Main {
         return scan.nextInt();
     }
 
-    public static int trataMedicoOperacao(int opcao) {
-        switch (opcao) {
-            default -> {
-                mostraErroUsuario();
-            }
-            case 0 -> {
-                return 4;
-            }
-           case 1 -> {
-               PacienteDAO paciente = new PacienteDAO();
-               paciente.listaPaciente();
-               break;
-            }
-            /*
-            case 2 -> {
-            }
-            case 3-> {
+    public static int trataMedicoOperacao() {
+        Scanner scan = new Scanner(System.in);
+        int opcaoLocal = mostraMedicoOperacao(scan);
+        do {
+            switch (opcaoLocal) {
+                default -> {
+                    mostraErroUsuario();
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+                case 0 -> {
+                    return 4;
+                }
+                case 1 -> {
+                    PacienteDAO paciente = new PacienteDAO();
+                    paciente.listaPaciente();
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+            /* case 2 -> {
             } */
-            case 4-> {
-                MedicoDAO medicoDAO = new MedicoDAO();
-                medicoDAO.listaMedicos();
-                break;
-            } /*
-            case 5 -> {
-            } */
-            case 6 -> {
-                MedicoDAO medicoDAO = new MedicoDAO();
-                Scanner scan = new Scanner(System.in);
-                System.out.println("Insira o id do médico a atualizar: ");
-                int id = scan.nextInt();
-                Medico medico = medicoDAO.preencheMedico();
-                medicoDAO.atualizaMedico(medico, id);
-                System.out.println("O médico foi atualizado com sucesso!");
+                case 3 -> {
+                    RegistroDAO registroDAO = new RegistroDAO();
+                    registroDAO.listaRegistros();
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+                case 4 -> {
+                    MedicoDAO medicoDAO = new MedicoDAO();
+                    medicoDAO.listaMedicos();
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+                case 5 -> {
+                    RegistroDAO registroDAO = new RegistroDAO();
+                    registroDAO.cadastraRegistro();
+                    System.out.println("Registro concluído com sucesso!");
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+                case 6 -> {
+                    MedicoDAO medicoDAO = new MedicoDAO();
+                    System.out.println("Insira o id do médico a atualizar: ");
+                    int id = scan.nextInt();
+                    Medico medico = medicoDAO.preencheMedico();
+                    medicoDAO.atualizaMedico(medico, id);
+                    System.out.println("O médico foi atualizado com sucesso!");
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+                case 7 -> {
+                    MedicoDAO medicoDAO = new MedicoDAO();
+                    System.out.println("Insira o id do médico a remover: ");
+                    int id = scan.nextInt();
+                    medicoDAO.removeMedico(id);
+                    System.out.println("Médico removido com sucesso!");
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
             }
-            case 7 -> {
-                MedicoDAO medicoDAO = new MedicoDAO();
-                Scanner scan = new Scanner(System.in);
-                System.out.println("Insira o id do médico a atualizar: ");
-                int id = scan.nextInt();
-                medicoDAO.removeMedico(id);
-                System.out.println("Médico removido com sucesso!");
-            }
-        }
-        return opcao;
+        } while (opcaoLocal != 0);
+        return 4;
     }
 
     public static int mostraEnfermeiroOperacao(Scanner scan) {
@@ -128,42 +139,70 @@ public class Main {
         return scan.nextInt();
     }
 
-    public static int trataEnfermeiroOperacao(int opcao) {
-        switch (opcao) {
-            default: {
-                mostraErroUsuario();
-                break;
+    public static int trataEnfermeiroOperacao() {
+        Scanner scan = new Scanner(System.in);
+        int opcaoLocal = mostraEnfermeiroOperacao(scan);
+        do {
+            switch (opcaoLocal) {
+                default -> {
+                    mostraErroUsuario();
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 0 -> {
+                    System.out.println("------------------------------------------------");
+                }
+                case 1 -> {
+                     PacienteDAO paciente = new PacienteDAO();
+                     paciente.listaPaciente();
+                     opcaoLocal = mostraMedicoOperacao(scan);
+                }
+            /* case 2 -> {
+            } */
+                case 3 -> {
+                    RegistroDAO registroDAO = new RegistroDAO();
+                    registroDAO.listaRegistros();
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 4 -> {
+                    EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
+                    enfermeiroDAO.listaEnfermeiros();
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 5 -> {
+                }
+                case 6 -> {
+                    PacienteDAO pacienteDAO = new PacienteDAO();
+                    Paciente paciente = pacienteDAO.preenchePaciente();
+                    pacienteDAO.cadastrarPaciente(paciente);
+                    System.out.println("Paciente cadastrado com sucesso.");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                } 
+                case 7 -> {
+                    RegistroDAO registroDAO = new RegistroDAO();
+                    registroDAO.cadastraRegistro();
+                    System.out.println("Registro concluído com sucesso!");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 8 -> {
+                    EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
+                    System.out.println("Insira o id do enfermeiro a atualizar: ");
+                    int id = scan.nextInt();
+                    Enfermeiro enfermeiro = enfermeiroDAO.preencheEnfermeiro();
+                    enfermeiroDAO.atualizaEnfermeiro(enfermeiro, id);
+                    System.out.println("O enfermeiro foi atualizado com sucesso!");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
+                case 9 -> {
+                    EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
+                    System.out.println("Insira o id do enfermeiro a remover: ");
+                    int id = scan.nextInt();
+                    enfermeiroDAO.removeEnfermeiro(id);
+                    System.out.println("Enfermeiro removido com sucesso!");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
             }
-            case 0: {
-            }
-            case 1: {
-                PacienteDAO paciente = new PacienteDAO();
-                paciente.listaPaciente();
-                break;
-            }
-            case 2: {
-            }
-            case 3: {
-            }
-            case 4: {
-            }
-            case 5: {
-            }
-            case 6: {
-                PacienteDAO pacienteDAO = new PacienteDAO();
-                Paciente paciente = pacienteDAO.preenchePaciente();
-                pacienteDAO.cadastrarPaciente(paciente);
-                System.out.println("Paciente cadastrado com sucesso.");
-                break;
-            }
-            case 7: {
-            }
-            case 8: {
-            }
-            case 9: {
-            }
-        }
-        return opcao;
+        } while (opcaoLocal != 0);
+        return 4;
     }
 
     public static int mostrarCadastroNovoUsuario(Scanner scan) {
@@ -176,23 +215,34 @@ public class Main {
         return scan.nextInt();
     }
 
-    public static int trataCadastroNovoUsuario(int opcao) {
-        switch (opcao) {
-            default -> {
-                mostraErroUsuario();
+    public static int trataCadastroNovoUsuario() {
+        Scanner scan = new Scanner(System.in);
+        int opcaoLocal = mostrarCadastroNovoUsuario(scan);
+        do {
+            switch (opcaoLocal) {
+                default -> {
+                    mostraErroUsuario();
+                    opcaoLocal = mostrarCadastroNovoUsuario(scan);
+                }
+                case 0 -> {
+                    System.out.println("------------------------------------------------");
+                }
+                case 1 -> {
+                    MedicoDAO medicoDao = new MedicoDAO();
+                    Medico medico = medicoDao.preencheMedico();
+                    medicoDao.cadastraMedico(medico);
+                    System.out.println("Médico cadastrado com sucesso.");
+                    opcaoLocal = mostrarCadastroNovoUsuario(scan);
+                }
+                case 2 -> {
+                    EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
+                    Enfermeiro enfermeiro = enfermeiroDAO.preencheEnfermeiro();
+                    enfermeiroDAO.cadastraEnfermeiro(enfermeiro);
+                    System.out.println("Enfermeiro cadastrado com sucesso.");
+                    opcaoLocal = mostrarCadastroNovoUsuario(scan);
+                }
             }
-            case 0 -> {
-                return 4;
-            }
-            case 1 -> {
-                MedicoDAO medicoDao = new MedicoDAO();
-                Medico medico = medicoDao.preencheMedico();
-                medicoDao.cadastraMedico(medico);
-                System.out.println("Médico cadastrado com sucesso.");
-            }
-            case 2 -> {
-            }
-        }
+        } while (opcaoLocal != 0);
         return 4;
     }
 

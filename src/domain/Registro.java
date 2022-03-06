@@ -1,53 +1,76 @@
 package domain;
 
+import java.util.Date;
+
 public class Registro {
     private final int id;
-    private int pacienteId;
-    private int medicoId;
-    private int enfermeiroId;
-    private int fichaId;
+    private String nomePaciente;
+    private String tipoAtendimento;
+    private Date diaAtendimento;
+    private String areaAtendimento;
+    private String nomeMedico;
+    private String nomeEnfermeiro;
 
-    public Registro(int id, int pacienteId, int medicoId, int enfermeiroId, int fichaId) {
+    public Registro(int id, String nomePaciente, String tipoAtendimento, Date diaAtendimento,
+                    String areaAtendimento, String nomeMedico, String nomeEnfermeiro) {
         this.id = id;
-        this.pacienteId = pacienteId;
-        this.medicoId = medicoId;
-        this.enfermeiroId = enfermeiroId;
-        this.fichaId = fichaId;
+        this.nomePaciente = nomePaciente;
+        this.tipoAtendimento = tipoAtendimento;
+        this.diaAtendimento = diaAtendimento;
+        this.areaAtendimento = areaAtendimento;
+        this.nomeMedico = nomeMedico;
+        this.nomeEnfermeiro = nomeEnfermeiro;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getPacienteId() {
-        return pacienteId;
+    public String getNomePaciente() {
+        return nomePaciente;
     }
 
-    public int getMedicoId() {
-        return medicoId;
+    public String getTipoAtendimento() {
+        return tipoAtendimento;
     }
 
-    public int getEnfermeiroId() {
-        return enfermeiroId;
+    public Date getDiaAtendimento() {
+        return diaAtendimento;
     }
 
-    public int getFichaId() {
-        return fichaId;
+    public String getAreaAtendimento() {
+        return areaAtendimento;
     }
 
-    public void setPacienteId(int pacienteId) {
-        this.pacienteId = pacienteId;
+    public String getNomeMedico() {
+        return nomeMedico;
     }
 
-    public void setMedicoId(int medicoId) {
-        this.medicoId = medicoId;
+    public String getNomeEnfermeiro() {
+        return nomeEnfermeiro;
     }
 
-    public void setEnfermeiroId(int enfermeiroId) {
-        this.enfermeiroId = enfermeiroId;
+    public void setNomePaciente(String nomePaciente) {
+        this.nomePaciente = nomePaciente;
     }
 
-    public void setFichaId(int fichaId) {
-        this.fichaId = fichaId;
+    public void setTipoAtendimento(String tipoAtendimento) {
+        this.tipoAtendimento = tipoAtendimento;
+    }
+
+    public void setDiaAtendimento(Date diaAtendimento) {
+        this.diaAtendimento = diaAtendimento;
+    }
+
+    public void setAreaAtendimento(String areaAtendimento) {
+        this.areaAtendimento = areaAtendimento;
+    }
+
+    public void setNomeMedico(String nomeMedico) {
+        this.nomeMedico = nomeMedico;
+    }
+
+    public void setNomeEnfermeiro(String nomeEnfermeiro) {
+        this.nomeEnfermeiro = nomeEnfermeiro;
     }
 }
