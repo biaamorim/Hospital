@@ -1,17 +1,17 @@
 package dao;
 
-import java.util.Date;
-
 import config.ProvedorPostgres;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FichaDAO {
   ProvedorPostgres provedor = new ProvedorPostgres();
 
-  public Ficha preencheFicha() {
+  public src.domain.Ficha preencheFicha() {
     Scanner scan = new Scanner(System.in);
     System.out.println("------------------- DADOS DA FICHA -------------------");
     System.out.println("Insira a descrição: ");
