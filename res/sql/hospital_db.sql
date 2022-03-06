@@ -50,11 +50,11 @@ CREATE TABLE paciente
 (
     --- atributos ---
     id_paciente     SERIAL PRIMARY KEY,
-    data_nascimento DATE        NOT NULL,
+    data_nascimento VARCHAR(20)        NOT NULL,
     cor             VARCHAR(15) NOT NULL,
     filiacao        VARCHAR(50) NOT NULL,
     email           VARCHAR(50) NOT NULL,
-
+    dataCadastro    VARCHAR(50) NOT NULL,
     --- chaves estrangeiras ---
     pessoa_paciente_id INT NOT NULL,
 

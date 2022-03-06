@@ -1,8 +1,10 @@
 import dao.EnfermeiroDAO;
 import dao.MedicoDAO;
+import dao.PacienteDAO;
 import dao.RegistroDAO;
 import domain.Enfermeiro;
 import domain.Medico;
+import domain.Paciente;
 
 import java.util.Scanner;
 
@@ -75,9 +77,12 @@ public class Main {
                 case 0 -> {
                     return 4;
                 }
-            /* case 1 -> {
-            }
-            case 2 -> {
+                case 1 -> {
+                    PacienteDAO paciente = new PacienteDAO();
+                    paciente.listaPaciente();
+                    opcaoLocal = mostraMedicoOperacao(scan);
+                }
+            /* case 2 -> {
             } */
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
@@ -146,9 +151,12 @@ public class Main {
                 case 0 -> {
                     System.out.println("------------------------------------------------");
                 }
-            /*case 1 -> {
-            }
-            case 2 -> {
+                case 1 -> {
+                     PacienteDAO paciente = new PacienteDAO();
+                     paciente.listaPaciente();
+                     opcaoLocal = mostraMedicoOperacao(scan);
+                }
+            /* case 2 -> {
             } */
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
@@ -160,10 +168,15 @@ public class Main {
                     enfermeiroDAO.listaEnfermeiros();
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
-            /* case 5 -> {
-            }
-            case 6 -> {
-            } */
+                case 5 -> {
+                }
+                case 6 -> {
+                    PacienteDAO pacienteDAO = new PacienteDAO();
+                    Paciente paciente = pacienteDAO.preenchePaciente();
+                    pacienteDAO.cadastrarPaciente(paciente);
+                    System.out.println("Paciente cadastrado com sucesso.");
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                } 
                 case 7 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.cadastraRegistro();
