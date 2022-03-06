@@ -1,12 +1,13 @@
-package domain;
+package src.domain;
 
+import java.util.Date;
 public class Ficha {
     private final int id;
     private String descricao;
     private String dataRegistro;
     private String tipoAtendimento;
 
-    public Ficha(int id, String descricao, String dataRegistro, String tipoAtendimento) {
+    public Ficha(int id, String descricao, Date dataRegistro, String tipoAtendimento) {
         this.id = id;
         this.descricao = descricao;
         this.dataRegistro = dataRegistro;

@@ -3,6 +3,8 @@ import dao.MedicoDAO;
 import dao.RegistroDAO;
 import domain.Enfermeiro;
 import domain.Medico;
+import domain.Ficha;
+import dao.FichaDAO; 
 
 import java.util.Scanner;
 
@@ -136,9 +138,11 @@ public class Main {
             }
             case 0 -> {}
             /*case 1 -> {
-            }
+            }*/
             case 2 -> {
-            } */
+                FichaDAO fichaDAO = new FichaDAO();
+                fichaDAO.listaFicha(); 
+            } 
             case 3 -> {
                 RegistroDAO registroDAO = new RegistroDAO();
                 registroDAO.listaRegistros();
@@ -147,9 +151,13 @@ public class Main {
                 EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
                 enfermeiroDAO.listaEnfermeiros();
             }
-            /* case 5 -> {
+             case 5 -> {
+                 FichaDAO fichaDAO = new FichaDAO();
+                 FichaDAO ficha = fichaDAO.preencheFicha();
+                 fichaDAO.cadastraFicha(ficha);
+                 System.out.println("Ficha cadastrada com sucesso!");
             }
-            case 6 -> {
+            /* case 6 -> {
             } */
             case 7 -> {
                 RegistroDAO registroDAO = new RegistroDAO();
