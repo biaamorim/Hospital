@@ -70,7 +70,7 @@ CREATE TABLE ficha
     id_ficha         SERIAL PRIMARY KEY,
     descricao        VARCHAR(100) NOT NULL,
     tipo_atendimento VARCHAR(50)  NOT NULL,
-    data_registro    DATE         NOT NULL
+    data_registro    VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE registro
