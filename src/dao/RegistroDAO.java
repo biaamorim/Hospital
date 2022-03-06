@@ -2,7 +2,7 @@ package dao;
 
 import config.ProvedorPostgres;
 import domain.Registro;
-import org.jetbrains.annotations.NotNull;
+import interfaces.DAOInterface;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RegistroDAO {
+public class RegistroDAO implements DAOInterface {
     ProvedorPostgres provedor = new ProvedorPostgres();
-    public void listaRegistros() {
+    public void lista() {
         String registrosQuery = """
                 SELECT r.id_registro      AS id,
                        pp.nome            AS nome_paciente,
@@ -83,6 +83,22 @@ public class RegistroDAO {
             pstm.setInt(3, idEnfermeiro);
             pstm.setInt(4, idFicha);
             pstm.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
+        }
+    }
+
+    public void remove(int id) {
+        String registroQuery = "DELETE FROM registro WHERE id_registro = ?;";
+        Connection conn = provedor.pegaConexao();
+        PreparedStatement pstm;
+        try {
+            pstm = conn.prepareStatement(registroQuery);
+            pstm.setInt(1, id);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

@@ -2,6 +2,7 @@ package dao;
 
 import config.ProvedorPostgres;
 import domain.Enfermeiro;
+import interfaces.DAOInterface;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class EnfermeiroDAO {
+public class EnfermeiroDAO implements DAOInterface {
 
     ProvedorPostgres provedor = new ProvedorPostgres();
 
@@ -37,7 +38,7 @@ public class EnfermeiroDAO {
         return new Enfermeiro(nome, cpf, telefone, endereco, sexo, 0, equipe, supervisor);
     }
 
-    public void listaEnfermeiros() {
+    public void lista() {
         String enfermeiroQuery= """
                 SELECT p.cpf             AS cpf,
                        p.nome            AS nome,
@@ -144,7 +145,7 @@ public class EnfermeiroDAO {
         }
     }
 
-    public void removeEnfermeiro(int id) {
+    public void remove(int id) {
         String medicoQuery = "DELETE FROM enfermeiro WHERE id_enfermeiro = ? RETURNING pessoa_enfermeiro_id;";
         String pessoaQuery = "DELETE FROM pessoa WHERE id = ?;";
         Connection conn = provedor.pegaConexao();
