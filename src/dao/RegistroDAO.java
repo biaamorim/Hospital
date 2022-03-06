@@ -22,7 +22,7 @@ public class RegistroDAO {
                        f.data_registro    AS dia_atendimento,
                        m.especialidade    AS area_atendimento,
                        pm.nome            AS nome_medico,
-                       pe.nome            AS nome_enfermeiro,
+                       pe.nome            AS nome_enfermeiro
                 FROM registro r
                          INNER JOIN paciente p on p.id_paciente = r.paciente_id
                          INNER JOIN pessoa pp on pp.id = p.pessoa_paciente_id

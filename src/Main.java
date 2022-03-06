@@ -89,6 +89,7 @@ public class Main {
             case 5 -> {
                 RegistroDAO registroDAO = new RegistroDAO();
                 registroDAO.cadastraRegistro();
+                System.out.println("Registro concluído com sucesso!");
             }
             case 6 -> {
                 MedicoDAO medicoDAO = new MedicoDAO();
@@ -153,6 +154,7 @@ public class Main {
             case 7 -> {
                 RegistroDAO registroDAO = new RegistroDAO();
                 registroDAO.cadastraRegistro();
+                System.out.println("Registro concluído com sucesso!");
             }
             case 8 -> {
                 EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();

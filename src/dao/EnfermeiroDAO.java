@@ -83,7 +83,7 @@ public class EnfermeiroDAO {
 
     public void cadastraEnfermeiro(@NotNull Enfermeiro enfermeiro) {
         String pessoaQuery = "INSERT INTO pessoa (cpf, nome, numero_telefone, endereco, sexo) VALUES (?, ?, ?, ?, ?) RETURNING id;";
-        String enfermeiroQuery = "INSERT INTO enfermeiro (id_enfermeiro, tipo_equipe, e_supervisor) VALUES (?,?,?);";
+        String enfermeiroQuery = "INSERT INTO enfermeiro (tipo_equipe, e_supervisor, pessoa_enfermeiro_id) VALUES (?,?,?);";
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
         try {
@@ -101,7 +101,7 @@ public class EnfermeiroDAO {
             pstm = conn.prepareStatement(enfermeiroQuery);
             pstm.setString(1, enfermeiro.getTipoEquipe());
             pstm.setBoolean(2, enfermeiro.getESupervisor());
-            pstm.setInt(5, idPessoa);
+            pstm.setInt(3, idPessoa);
             pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
