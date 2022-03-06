@@ -19,8 +19,6 @@ CREATE TABLE enfermeiro
     id_enfermeiro     SERIAL PRIMARY KEY,
     tipo_equipe       VARCHAR(50) NOT NULL,
     e_supervisor      BOOLEAN     NOT NULL,
-    inicio_expediente TIMESTAMP   NOT NULL,
-    fim_expediente    TIMESTAMP   NOT NULL,
 
     --- chaves estrangeiras ---
     pessoa_enfermeiro_id INT NOT NULL,
