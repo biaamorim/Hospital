@@ -1,5 +1,6 @@
 import dao.EnfermeiroDAO;
 import dao.MedicoDAO;
+import dao.RegistroDAO;
 import domain.Enfermeiro;
 import domain.Medico;
 
@@ -76,15 +77,19 @@ public class Main {
             /* case 1 -> {
             }
             case 2 -> {
-            }
-            case 3-> {
             } */
+            case 3-> {
+                RegistroDAO registroDAO = new RegistroDAO();
+                registroDAO.listaRegistros();
+            }
             case 4-> {
                 MedicoDAO medicoDAO = new MedicoDAO();
                 medicoDAO.listaMedicos();
-            } /*
+            }
             case 5 -> {
-            } */
+                RegistroDAO registroDAO = new RegistroDAO();
+                registroDAO.cadastraRegistro();
+            }
             case 6 -> {
                 MedicoDAO medicoDAO = new MedicoDAO();
                 Scanner scan = new Scanner(System.in);
@@ -132,9 +137,11 @@ public class Main {
             /*case 1 -> {
             }
             case 2 -> {
-            }
-            case 3 -> {
             } */
+            case 3 -> {
+                RegistroDAO registroDAO = new RegistroDAO();
+                registroDAO.listaRegistros();
+            }
             case 4 -> {
                 EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
                 enfermeiroDAO.listaEnfermeiros();
@@ -142,9 +149,11 @@ public class Main {
             /* case 5 -> {
             }
             case 6 -> {
-            }
-            case 7 -> {
             } */
+            case 7 -> {
+                RegistroDAO registroDAO = new RegistroDAO();
+                registroDAO.cadastraRegistro();
+            }
             case 8 -> {
                 EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
                 Scanner scan = new Scanner(System.in);
