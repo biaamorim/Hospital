@@ -2,6 +2,8 @@ package dao;
 
 import config.ProvedorPostgres;
 import domain.Medico;
+import interfaces.DAOInterface;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MedicoDAO {
+public class MedicoDAO implements DAOInterface {
     ProvedorPostgres provedor = new ProvedorPostgres();
 
     public Medico preencheMedico() {
@@ -36,7 +38,7 @@ public class MedicoDAO {
         return new Medico(nome, cpf, telefone, endereco, sexo, 0, crm, especialidade, diaPlantao);
     }
 
-    public void listaMedicos() {
+    public void lista() {
         String medicoQuery = """
                 SELECT p.cpf             AS cpf,
                        p.nome            AS nome,
@@ -82,7 +84,7 @@ public class MedicoDAO {
         }
     }
 
-    public void cadastraMedico(Medico medico) {
+    public void cadastra(@NotNull Medico medico) {
         String pessoaQuery = "INSERT INTO pessoa (cpf, nome, numero_telefone, endereco, sexo) VALUES (?, ?, ?, ?, ?) RETURNING id;";
         String medicoQuery = "INSERT INTO medico (crm, especialidade, dia_plantao, pessoa_medico_id) VALUES (?, ?, ?, ?);";
         Connection conn = provedor.pegaConexao();
@@ -114,7 +116,7 @@ public class MedicoDAO {
         }
     }
 
-    public void atualizaMedico(Medico medico, int id) {
+    public void atualiza(@NotNull Medico medico, int id) {
         String medicoQuery = "UPDATE medico SET crm = ?, especialidade = ?, dia_plantao = ? WHERE id_medico = ? RETURNING pessoa_medico_id;";
         String pessoaQuery = "UPDATE pessoa SET cpf = ?, nome = ?, numero_telefone = ?, endereco = ?, sexo = ? WHERE id = ?;";
         Connection conn = provedor.pegaConexao();
@@ -147,7 +149,7 @@ public class MedicoDAO {
         }
     }
 
-    public void removeMedico(int id) {
+    public void remove(int id) {
         String medicoQuery = "DELETE FROM medico WHERE id_medico = ? RETURNING pessoa_medico_id;";
         String pessoaQuery = "DELETE FROM pessoa WHERE id = ?;";
         Connection conn = provedor.pegaConexao();

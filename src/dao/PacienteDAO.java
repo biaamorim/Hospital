@@ -1,8 +1,8 @@
 package dao;
 
 import config.ProvedorPostgres;
-import domain.Medico;
 import domain.Paciente;
+import interfaces.DAOInterface;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class PacienteDAO {
+public class PacienteDAO implements DAOInterface {
     ProvedorPostgres provedor = new ProvedorPostgres();
 
     public Paciente preenchePaciente() {
@@ -39,7 +39,7 @@ public class PacienteDAO {
         Date datadecadastro = new Date();
         System.out.println("Filiação: ");
         String filiacao = scan.next();
-        System.out.println("email: ");
+        System.out.println("Email: ");
         String email = scan.next();
 
         return new Paciente(nome, cpf, telefone, endereco, sexo, 0, datanascimento, cor, dateFormat.format(datadecadastro),filiacao,email);
@@ -62,7 +62,6 @@ public class PacienteDAO {
             if (resultSet.next()) {
                 id = resultSet.getInt("id");
             }
-
             pstm = conn.prepareStatement(pacienteQuery);
             pstm.setString(1, paciente.getDataNascimento());
             pstm.setString(2, paciente.getCor());
@@ -76,9 +75,7 @@ public class PacienteDAO {
         }
     }
 
-
-
-    public void listaPaciente() {
+    public void lista() {
             String pacienteQuery =  "SELECT p.cpf   AS cpf," +
                                     "p.nome AS nome," +
                                     "p.numero_telefone AS telefone," +
@@ -97,12 +94,9 @@ public class PacienteDAO {
         PreparedStatement pstm;
         ResultSet rset;
         List<Paciente> pacientes = new ArrayList<>();
-
-
         try {
             pstm = conn.prepareStatement(pacienteQuery);
             rset = pstm.executeQuery();
-
             while (rset.next()) {
                 Paciente paciente = new Paciente(
                             rset.getString("nome"),
@@ -118,7 +112,6 @@ public class PacienteDAO {
                             rset.getString("email"));
                 pacientes.add(paciente);
             }
-
             for (Paciente paciente : pacientes) {
                 System.out.println("Id: " + paciente.getId());
                 System.out.println("Nome: " + paciente.getNome());
@@ -169,11 +162,7 @@ public class PacienteDAO {
         }
     }
 
-
-
-
-
-    public void removePaciente(int id) {
+    public void remove(int id) {
         String pacienteQuery = "DELETE FROM paciente WHERE id_medico = ? RETURNING pessoa_paciente_id;";
         String pessoaQuery = "DELETE FROM pessoa WHERE id = ?;";
         Connection conn = provedor.pegaConexao();

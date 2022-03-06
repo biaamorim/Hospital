@@ -5,6 +5,7 @@ import dao.RegistroDAO;
 import domain.Enfermeiro;
 import domain.Medico;
 import domain.Paciente;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Scanner;
 
@@ -15,30 +16,20 @@ public class Main {
         do {
             opcao = mostraMenuInicial(scan);
             switch (opcao) {
-                default -> {
-                    mostraErroUsuario();
-                }
+                default -> mostraErroUsuario();
                 case 0 -> {
                     System.out.println("------------------------------------------------");
                     System.out.println("Volte mais vezes!");
                 }
-                case 1 -> {
-                    opcao = trataMedicoOperacao();
-                }
-                case 2 -> {
-                    opcao = trataEnfermeiroOperacao();
-                }
-                case 3 -> {
-                    opcao = trataCadastroNovoUsuario();
-                }
-                case 4 -> {
-                    System.out.println("\n");
-                }
+                case 1 -> opcao = trataMedicoOperacao();
+                case 2 -> opcao = trataEnfermeiroOperacao();
+                case 3 -> opcao = trataCadastroNovoUsuario();
+                case 4 -> System.out.println("\n");
             }
         } while (opcao != 0);
     }
 
-    public static int mostraMenuInicial(Scanner scan) {
+    public static int mostraMenuInicial(@NotNull Scanner scan) {
         System.out.println("------------------- HOSPITAL -------------------");
         System.out.println("Seja bem-vindo(a) ao sistema deste hospital!");
         System.out.println("Quem você é? ");
@@ -50,7 +41,7 @@ public class Main {
         return scan.nextInt();
     }
 
-    public static int mostraMedicoOperacao(Scanner scan) {
+    public static int mostraMedicoOperacao(@NotNull Scanner scan) {
         System.out.println("------------------- Operações de Médico -------------------");
         System.out.println("O que você deseja fazer hoje?");
         System.out.println("1- Ver Pacientes;");
@@ -79,19 +70,19 @@ public class Main {
                 }
                 case 1 -> {
                     PacienteDAO paciente = new PacienteDAO();
-                    paciente.listaPaciente();
+                    paciente.lista();
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
             /* case 2 -> {
             } */
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
-                    registroDAO.listaRegistros();
+                    registroDAO.lista();
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
                 case 4 -> {
                     MedicoDAO medicoDAO = new MedicoDAO();
-                    medicoDAO.listaMedicos();
+                    medicoDAO.lista();
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
                 case 5 -> {
@@ -105,7 +96,7 @@ public class Main {
                     System.out.println("Insira o id do médico a atualizar: ");
                     int id = scan.nextInt();
                     Medico medico = medicoDAO.preencheMedico();
-                    medicoDAO.atualizaMedico(medico, id);
+                    medicoDAO.atualiza(medico, id);
                     System.out.println("O médico foi atualizado com sucesso!");
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
@@ -113,7 +104,7 @@ public class Main {
                     MedicoDAO medicoDAO = new MedicoDAO();
                     System.out.println("Insira o id do médico a remover: ");
                     int id = scan.nextInt();
-                    medicoDAO.removeMedico(id);
+                    medicoDAO.remove(id);
                     System.out.println("Médico removido com sucesso!");
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
@@ -122,7 +113,7 @@ public class Main {
         return 4;
     }
 
-    public static int mostraEnfermeiroOperacao(Scanner scan) {
+    public static int mostraEnfermeiroOperacao(@NotNull Scanner scan) {
         System.out.println("------------------- Operações de Enfermeiro -------------------");
         System.out.println("O que voce deseja?");
         System.out.println("1- Ver Pacientes;");
@@ -141,31 +132,30 @@ public class Main {
 
     public static int trataEnfermeiroOperacao() {
         Scanner scan = new Scanner(System.in);
-        int opcaoLocal = mostraEnfermeiroOperacao(scan);
+        int opcaoLocal;
+        opcaoLocal = mostraEnfermeiroOperacao(scan);
         do {
             switch (opcaoLocal) {
                 default -> {
                     mostraErroUsuario();
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
-                case 0 -> {
-                    System.out.println("------------------------------------------------");
-                }
+                case 0 -> System.out.println("------------------------------------------------");
                 case 1 -> {
                      PacienteDAO paciente = new PacienteDAO();
-                     paciente.listaPaciente();
+                     paciente.lista();
                      opcaoLocal = mostraMedicoOperacao(scan);
                 }
             /* case 2 -> {
             } */
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
-                    registroDAO.listaRegistros();
+                    registroDAO.lista();
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
                 case 4 -> {
                     EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
-                    enfermeiroDAO.listaEnfermeiros();
+                    enfermeiroDAO.lista();
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
                 case 5 -> {
@@ -196,7 +186,7 @@ public class Main {
                     EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
                     System.out.println("Insira o id do enfermeiro a remover: ");
                     int id = scan.nextInt();
-                    enfermeiroDAO.removeEnfermeiro(id);
+                    enfermeiroDAO.remove(id);
                     System.out.println("Enfermeiro removido com sucesso!");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
                 }
@@ -205,7 +195,7 @@ public class Main {
         return 4;
     }
 
-    public static int mostrarCadastroNovoUsuario(Scanner scan) {
+    public static int mostrarCadastroNovoUsuario(@NotNull Scanner scan) {
         System.out.println("------------------- Operações de Novo usuário -------------------");
         System.out.println("O que voce deseja?");
         System.out.println("1- Cadastrar novo perfil de Médico;");
@@ -224,13 +214,11 @@ public class Main {
                     mostraErroUsuario();
                     opcaoLocal = mostrarCadastroNovoUsuario(scan);
                 }
-                case 0 -> {
-                    System.out.println("------------------------------------------------");
-                }
+                case 0 -> System.out.println("------------------------------------------------");
                 case 1 -> {
                     MedicoDAO medicoDao = new MedicoDAO();
                     Medico medico = medicoDao.preencheMedico();
-                    medicoDao.cadastraMedico(medico);
+                    medicoDao.cadastra(medico);
                     System.out.println("Médico cadastrado com sucesso.");
                     opcaoLocal = mostrarCadastroNovoUsuario(scan);
                 }
