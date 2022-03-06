@@ -4,14 +4,14 @@ import java.util.Date;
 public class Ficha {
     private final int id;
     private String descricao;
-    private String dataRegistro;
     private String tipoAtendimento;
+    private String dataRegistro;
 
-    public Ficha(int id, String descricao, Date dataRegistro, String tipoAtendimento) {
+    public Ficha(int id, String descricao, String tipoAtendimento,  String dataRegistro) {
         this.id = id;
         this.descricao = descricao;
-        this.dataRegistro = dataRegistro;
         this.tipoAtendimento = tipoAtendimento;
+        this.dataRegistro = dataRegistro;
     }
 
     public int getId() {

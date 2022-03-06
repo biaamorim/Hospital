@@ -77,9 +77,11 @@ public class Main {
                 return 4;
             }
             /* case 1 -> {
-            }
-            case 2 -> {
             } */
+            case 2 -> {
+                FichaDAO fichaDAO = new FichaDAO();
+                fichaDAO.listaFicha();
+            } 
             case 3-> {
                 RegistroDAO registroDAO = new RegistroDAO();
                 registroDAO.listaRegistros();

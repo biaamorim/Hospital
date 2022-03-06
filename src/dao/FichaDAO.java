@@ -1,4 +1,4 @@
-package src.dao;
+package dao;
 
 import java.util.Date;
 
@@ -21,16 +21,16 @@ public class FichaDAO {
     return new Ficha(descricao, tipoAtendimento);
   }
 
-  public void cadastraFicha() {
-    String fichaQuery = "INSERT INTO ficha (descricao, dataRegistro, tipoAtendimento) VALUES (?, ?, ?)";
+  public void cadastraFicha(Ficha ficha) {
+    String fichaQuery = "INSERT INTO ficha (descricao, tipoAtendimento, dataRegistro) VALUES (?, ?, ?)";
     Connection conn = provedor.pegaConexao();
     PreparedStatement pstm; 
 
     try {
       pstm = conn.prepareStatement(fichaQuery);
       pstm.setString(1, ficha.getDescricao());
-      pstm.setDate(2, ficha.getDataRegistro());
       pstm.setString(3, ficha.getTipoAtendimento());
+      pstm.setString(2, ficha.getDataRegistro());
 
       ResultSet resultSet = pstm.executeQuery();
       int id = 0; 
@@ -46,6 +46,45 @@ public class FichaDAO {
     }
   }
 
+  public void atualizaFicha(Ficha ficha, int id) {
+    String fichaQuery = "UPDATE ficha SET descricao = ?, tipoAtendimento = ?, dataRegistro = ? WHERE id_ficha = ?";
+
+    Connection conn = provedor.pegaConexao();
+    PreparedStatement pstm;
+    try {
+      pstm = conn.prepareStatement(fichaQuery);
+      pstm.setString(1, ficha.getDescricao());
+      pstm.setString(2, ficha.getTipoAtendimento());
+      pstm.setString(3, ficha.getDataRegistro());
+      pstm.setInt(4, id);
+      
+      pstm.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      if (conn != null) {
+        provedor.fechaConexao(conn);
+      }
+    }
+  }
+  
+  public void removeFicha(int id) {
+    String FichaQuery = "DELETE FROM ficha WHERE id_ficha = ?";
+    Connection conn = provedor.pegaConexao();
+    PreparedStatement pstm;
+    try {
+        pstm = conn.prepareStatement(fichaQuery);
+        pstm.setInt(1, id);
+        pstm.execute();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        if (conn != null) {
+            provedor.fechaConexao(conn);
+        }
+    }
+  }
+
   public void listaFicha() {
     String fichaQuery = "SELECT FROM ficha";
     Connection conn = provedor.pegaConexao();
@@ -57,19 +96,19 @@ public class FichaDAO {
       resultSet = pstm.executeQuery();
       while(resultSet.next()) {
         Ficha ficha = new Ficha(resultSet.getString("descricao"), 
-        resultSet.getString("dataRegistro"), 
-        resultSet.getString("tipoAtendimento"));
+        resultSet.getString("tipoAtendimento"),
+        resultSet.getString("dataRegistro"));
         fichas.add(ficha);
       }
       for (Ficha ficha: fichas) {
         System.out.println("------------------- DADOS DA FICHA -------------------");
         System.out.println("Id:" + ficha.getId());
         System.out.println("Descrição: " + ficha.getDescricao());
-        System.out.println("Data registro:" + ficha.getDataRegistro());
         System.out.println("Tipo de Atendimento" + ficha.getTipoAtendimento());
+        System.out.println("Data registro:" + ficha.getDataRegistro());
         System.out.println("------------------------------------------");
       }
-    } catch (SQLException e) {
+    }catch (SQLException e) {
       e.printStackTrace();
     }finally {
       if (conn != null) {
@@ -77,19 +116,4 @@ public class FichaDAO {
       }
     }
   }
-
-  public void atualizaFicha() {
-
-  }
-  
-  public void deleteFicha() {
-
-  }
 }
-
-
-
-/*private final int id;
-    private String descricao;
-    private String dataRegistro;
-    private String tipoAtendimento;*/ 
