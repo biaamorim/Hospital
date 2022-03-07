@@ -71,11 +71,11 @@ public class Main {
                     paciente.lista();
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
-            case 2 -> {
+                case 2 -> {
                     FichaDAO ficha = new FichaDAO();
                     ficha.lista();
                     opcaoLocal = mostrarCadastroNovoUsuario(scan);
-            }
+                }
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.lista();
@@ -145,28 +145,24 @@ public class Main {
                 }
                 case 0 -> System.out.println("------------------------------------------------");
                 case 1 -> {
-                     PacienteDAO paciente = new PacienteDAO();
-                     paciente.lista();
-                     opcaoLocal = mostraMedicoOperacao(scan);
-
+                    PacienteDAO paciente = new PacienteDAO();
+                    paciente.lista();
+                    opcaoLocal = mostraMedicoOperacao(scan);
                 }
-             case 2 -> {
-                 FichaDAO fichaDAO = new FichaDAO();
-                 fichaDAO.lista();
-                 opcaoLocal = mostraEnfermeiroOperacao(scan);
-
-            }
+                case 2 -> {
+                    FichaDAO fichaDAO = new FichaDAO();
+                    fichaDAO.lista();
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.lista();
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
                 }
                 case 4 -> {
                     EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
                     enfermeiroDAO.lista();
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
                 }
                 case 5 -> {
                     FichaDAO fichaDAO = new FichaDAO();
@@ -174,7 +170,6 @@ public class Main {
                     fichaDAO.cadastraFicha(ficha);
                     System.out.println("Ficha cadastrada com sucesso!");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
                 }
                 case 6 -> {
                     PacienteDAO pacienteDAO = new PacienteDAO();
@@ -182,14 +177,12 @@ public class Main {
                     pacienteDAO.cadastrarPaciente(paciente);
                     System.out.println("Paciente cadastrado com sucesso.");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
-                } 
+                }
                 case 7 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.cadastraRegistro();
                     System.out.println("Registro concluído com sucesso!");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
                 }
                 case 8 -> {
                     EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
@@ -199,7 +192,6 @@ public class Main {
                     enfermeiroDAO.atualizaEnfermeiro(enfermeiro, id);
                     System.out.println("O enfermeiro foi atualizado com sucesso!");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
                 }
                 case 9 -> {
                     EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO();
@@ -208,7 +200,6 @@ public class Main {
                     enfermeiroDAO.remove(id);
                     System.out.println("Enfermeiro removido com sucesso!");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-
                 }
                 case 10 -> {
                     FichaDAO fichaDAO = new FichaDAO();

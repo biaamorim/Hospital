@@ -41,7 +41,7 @@ public class PacienteDAO implements DAOInterface {
         String filiacao = scan.nextLine();
         System.out.println("Email: ");
         String email = scan.nextLine();
-        return new Paciente(nome, cpf, telefone, endereco, sexo, 0, datanascimento, cor, dateFormat.format(datadecadastro),filiacao,email);
+        return new Paciente(nome, cpf, telefone, endereco, sexo, 0, datanascimento, cor, dateFormat.format(datadecadastro), filiacao, email);
     }
 
     public void cadastrarPaciente(Paciente paciente) {
@@ -79,19 +79,19 @@ public class PacienteDAO implements DAOInterface {
     }
 
     public void lista() {
-            String pacienteQuery =  "SELECT p.cpf   AS cpf," +
-                                    "p.nome AS nome," +
-                                    "p.numero_telefone AS telefone," +
-                                    "p.endereco AS endereco," +
-                                    "p.sexo AS sexo," +
-                                    "PC.id_paciente AS id," +
-                                    "PC.data_nascimento   AS dataNascimento," +
-                                    "PC.cor   AS cor," +
-                                    "Pc.dataCadastro     AS dataCadastro," +
-                                    "pc.filiacao as filiacao," +
-                                    "PC.email AS email " +
-                                    "FROM paciente PC " +
-                                    "INNER JOIN pessoa p on PC.pessoa_paciente_id = p.id; ";
+        String pacienteQuery = "SELECT p.cpf   AS cpf," +
+                "p.nome AS nome," +
+                "p.numero_telefone AS telefone," +
+                "p.endereco AS endereco," +
+                "p.sexo AS sexo," +
+                "PC.id_paciente AS id," +
+                "PC.data_nascimento   AS dataNascimento," +
+                "PC.cor   AS cor," +
+                "Pc.dataCadastro     AS dataCadastro," +
+                "pc.filiacao as filiacao," +
+                "PC.email AS email " +
+                "FROM paciente PC " +
+                "INNER JOIN pessoa p on PC.pessoa_paciente_id = p.id; ";
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
         ResultSet rset;
@@ -101,17 +101,17 @@ public class PacienteDAO implements DAOInterface {
             rset = pstm.executeQuery();
             while (rset.next()) {
                 Paciente paciente = new Paciente(
-                            rset.getString("nome"),
-                            rset.getString("cpf"),
-                            rset.getString("telefone"),
-                            rset.getString("endereco"),
-                            rset.getString("sexo"),
-                            rset.getInt("id"),
-                            rset.getString("dataNascimento"),
-                            rset.getString("cor"),
-                            rset.getString("dataCadastro"),
-                            rset.getString("filiacao"),
-                            rset.getString("email"));
+                        rset.getString("nome"),
+                        rset.getString("cpf"),
+                        rset.getString("telefone"),
+                        rset.getString("endereco"),
+                        rset.getString("sexo"),
+                        rset.getInt("id"),
+                        rset.getString("dataNascimento"),
+                        rset.getString("cor"),
+                        rset.getString("dataCadastro"),
+                        rset.getString("filiacao"),
+                        rset.getString("email"));
                 pacientes.add(paciente);
             }
             for (Paciente paciente : pacientes) {

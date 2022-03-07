@@ -39,7 +39,7 @@ public class EnfermeiroDAO implements DAOInterface {
     }
 
     public void lista() {
-        String enfermeiroQuery= """
+        String enfermeiroQuery = """
                 SELECT p.cpf             AS cpf,
                        p.nome            AS nome,
                        p.numero_telefone AS telefone,
@@ -59,11 +59,11 @@ public class EnfermeiroDAO implements DAOInterface {
             resultSet = pstm.executeQuery();
             while (resultSet.next()) {
                 Enfermeiro enfermeiro = new Enfermeiro(resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("telefone"),
-                        resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"), 
+                        resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"),
                         resultSet.getString("tipo_equipe"), resultSet.getBoolean("e_supervisor"));
                 enfermeiros.add(enfermeiro);
             }
-            for (Enfermeiro enfermeiro: enfermeiros) {
+            for (Enfermeiro enfermeiro : enfermeiros) {
                 System.out.println("Id: " + enfermeiro.getId());
                 System.out.println("Nome: " + enfermeiro.getNome());
                 System.out.println("CPF: " + enfermeiro.getCpf());
@@ -153,7 +153,7 @@ public class EnfermeiroDAO implements DAOInterface {
         PreparedStatement pstm;
         try {
             pstm = conn.prepareStatement(registroQuery);
-            pstm.setInt(1, id );
+            pstm.setInt(1, id);
             pstm.execute();
 
             pstm = conn.prepareStatement(medicoQuery);

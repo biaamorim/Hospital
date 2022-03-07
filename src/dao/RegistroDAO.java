@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 public class RegistroDAO implements DAOInterface {
     ProvedorPostgres provedor = new ProvedorPostgres();
+
     public void lista() {
         String registrosQuery = """
                 SELECT r.id_registro      AS id,
@@ -40,11 +41,11 @@ public class RegistroDAO implements DAOInterface {
             resultSet = pstm.executeQuery();
             while (resultSet.next()) {
                 Registro registro = new Registro(resultSet.getInt("id"), resultSet.getString("nome_paciente"), resultSet.getString("dia_atendimento"),
-                                                resultSet.getString("tipo_atendimento"), resultSet.getString("area_atendimento"), resultSet.getString("nome_medico"),
-                                                resultSet.getString("nome_enfermeiro"));
+                        resultSet.getString("tipo_atendimento"), resultSet.getString("area_atendimento"), resultSet.getString("nome_medico"),
+                        resultSet.getString("nome_enfermeiro"));
                 registros.add(registro);
             }
-            for (Registro registro: registros) {
+            for (Registro registro : registros) {
                 System.out.println("Id: " + registro.getId());
                 System.out.println("Nome do Paciente: " + registro.getNomePaciente());
                 System.out.println("Dia do atendimento: " + registro.getDiaAtendimento());

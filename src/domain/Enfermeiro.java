@@ -6,7 +6,7 @@ public class Enfermeiro extends Pessoa {
     private boolean eSupervisor;
 
     public Enfermeiro(String nome, String cpf, String numeroTelefone, String endereco,
-            String sexo, int id, String tipoEquipe, boolean eSupervisor) {
+                      String sexo, int id, String tipoEquipe, boolean eSupervisor) {
         super(nome, cpf, numeroTelefone, endereco, sexo);
         this.id = id;
         this.tipoEquipe = tipoEquipe;

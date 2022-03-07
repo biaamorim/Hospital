@@ -59,9 +59,7 @@ public class MedicoDAO implements DAOInterface {
             pstm = conn.prepareStatement(medicoQuery);
             resultSet = pstm.executeQuery();
             while (resultSet.next()) {
-                Medico medico = new Medico(resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("telefone"),
-                        resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"), resultSet.getString("crm"),
-                        resultSet.getString("especialidade"), resultSet.getString("dia_plantao"));
+                Medico medico = new Medico(resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("telefone"), resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"), resultSet.getString("crm"), resultSet.getString("especialidade"), resultSet.getString("dia_plantao"));
                 medicos.add(medico);
             }
             for (Medico medico : medicos) {
@@ -153,7 +151,6 @@ public class MedicoDAO implements DAOInterface {
         String registroQuery = "DELETE FROM registro WHERE medico_id = ?;";
         String medicoQuery = "DELETE FROM medico WHERE id_medico = ? RETURNING pessoa_medico_id  ;";
         String pessoaQuery = "DELETE FROM pessoa WHERE id = ?  ;";
-
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
         try {
