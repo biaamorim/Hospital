@@ -20,31 +20,25 @@ public class FichaDAO implements DAOInterface {
     Scanner scan = new Scanner(System.in);
     System.out.println("------------------- DADOS DA FICHA -------------------");
     System.out.println("Insira a descrição: ");
-    String descricao = scan.next();
+    String descricao = scan.nextLine();
     System.out.println("Insira o tipo de atendimento: ");
-    String tipoAtendimento = scan.next();
+    String tipoAtendimento = scan.nextLine();
     System.out.println("Insira a data: ");
-    String dataRegistro = scan.next();
+    String dataRegistro = scan.nextLine();
     return new Ficha(0, descricao, tipoAtendimento, dataRegistro);
   }
 
   public void cadastraFicha(@NotNull Ficha ficha) {
-    String fichaQuery = "INSERT INTO ficha (descricao, tipoAtendimento, dataRegistro) VALUES (?, ?, ?)";
+    String fichaQuery = "INSERT INTO ficha (descricao, tipo_atendimento, data_registro) VALUES (?, ?, ?)";
     Connection conn = provedor.pegaConexao();
-    PreparedStatement pstm; 
-
+    PreparedStatement pstm;
     try {
       pstm = conn.prepareStatement(fichaQuery);
       pstm.setString(1, ficha.getDescricao());
       pstm.setString(3, ficha.getTipoAtendimento());
       pstm.setString(2, ficha.getDataRegistro());
-
-      ResultSet resultSet = pstm.executeQuery();
-      int id = 0; 
-      if (resultSet.next()) {
-        id = resultSet.getInt("id");
-      }
-    }catch (SQLException e) {
+      pstm.execute();
+    } catch (SQLException e) {
       e.printStackTrace();
     } finally {
       if(conn != null) {
@@ -54,8 +48,7 @@ public class FichaDAO implements DAOInterface {
   }
 
   public void atualizaFicha(@NotNull Ficha ficha, int id) {
-    String fichaQuery = "UPDATE ficha SET descricao = ?, tipoAtendimento = ?, dataRegistro = ? WHERE id_ficha = ?";
-
+    String fichaQuery = "UPDATE ficha SET descricao = ?, tipo_atendimento = ?, data_registro = ? WHERE id_ficha = ?";
     Connection conn = provedor.pegaConexao();
     PreparedStatement pstm;
     try {
@@ -64,7 +57,6 @@ public class FichaDAO implements DAOInterface {
       pstm.setString(2, ficha.getTipoAtendimento());
       pstm.setString(3, ficha.getDataRegistro());
       pstm.setInt(4, id);
-      
       pstm.execute();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -77,7 +69,7 @@ public class FichaDAO implements DAOInterface {
 
   @Override
   public void lista() {
-      String fichaQuery = "SELECT FROM ficha";
+      String fichaQuery = "SELECT * FROM ficha";
       Connection conn = provedor.pegaConexao();
       PreparedStatement pstm;
       ResultSet resultSet;
@@ -86,22 +78,22 @@ public class FichaDAO implements DAOInterface {
         pstm = conn.prepareStatement(fichaQuery);
         resultSet = pstm.executeQuery();
         while(resultSet.next()) {
-          Ficha ficha = new Ficha(resultSet.getInt("id"), resultSet.getString("descricao"),
-                  resultSet.getString("tipoAtendimento"),
-                  resultSet.getString("dataRegistro"));
+          Ficha ficha = new Ficha( resultSet.getInt("id_ficha"), resultSet.getString("descricao"),
+                  resultSet.getString("tipo_atendimento"),
+                  resultSet.getString("data_registro"));
           fichas.add(ficha);
         }
         for (Ficha ficha: fichas) {
           System.out.println("------------------- DADOS DA FICHA -------------------");
           System.out.println("Id:" + ficha.getId());
           System.out.println("Descrição: " + ficha.getDescricao());
-          System.out.println("Tipo de Atendimento" + ficha.getTipoAtendimento());
+          System.out.println("Tipo de Atendimento:" + ficha.getTipoAtendimento());
           System.out.println("Data registro:" + ficha.getDataRegistro());
           System.out.println("------------------------------------------");
         }
-      }catch (SQLException e) {
+      } catch (SQLException e) {
         e.printStackTrace();
-      }finally {
+      } finally {
         if (conn != null) {
           provedor.fechaConexao(conn);
         }

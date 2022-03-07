@@ -20,21 +20,21 @@ public class MedicoDAO implements DAOInterface {
         Scanner scan = new Scanner(System.in);
         System.out.println("------------------- DADOS DO MÉDICO -------------------");
         System.out.println("Insira o cpf: ");
-        String cpf = scan.next();
+        String cpf = scan.nextLine();
         System.out.println("Insira o nome: ");
-        String nome = scan.next();
+        String nome = scan.nextLine();
         System.out.println("Insira o número de telefone: ");
-        String telefone = scan.next();
+        String telefone = scan.nextLine();
         System.out.println("Insira o endereço: ");
-        String endereco = scan.next();
+        String endereco = scan.nextLine();
         System.out.println("Insira o sexo: ");
-        String sexo = scan.next();
+        String sexo = scan.nextLine();
         System.out.println("Insira o CRM: ");
-        String crm = scan.next();
+        String crm = scan.nextLine();
         System.out.println("Insira a especialidade: ");
-        String especialidade = scan.next();
+        String especialidade = scan.nextLine();
         System.out.println("Insira o dia de plantão: ");
-        String diaPlantao = scan.next();
+        String diaPlantao = scan.nextLine();
         return new Medico(nome, cpf, telefone, endereco, sexo, 0, crm, especialidade, diaPlantao);
     }
 
@@ -150,11 +150,17 @@ public class MedicoDAO implements DAOInterface {
     }
 
     public void remove(int id) {
-        String medicoQuery = "DELETE FROM medico WHERE id_medico = ? RETURNING pessoa_medico_id;";
-        String pessoaQuery = "DELETE FROM pessoa WHERE id = ?;";
+        String registroQuery = "DELETE FROM registro WHERE medico_id = ?;";
+        String medicoQuery = "DELETE FROM medico WHERE id_medico = ? RETURNING pessoa_medico_id  ;";
+        String pessoaQuery = "DELETE FROM pessoa WHERE id = ?  ;";
+
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
         try {
+            pstm = conn.prepareStatement(registroQuery);
+            pstm.setInt(1, id);
+            pstm.execute();
+
             pstm = conn.prepareStatement(medicoQuery);
             pstm.setInt(1, id);
             ResultSet resultSet = pstm.executeQuery();

@@ -22,26 +22,25 @@ public class PacienteDAO implements DAOInterface {
         Scanner scan = new Scanner(System.in);
         System.out.println("------------------- DADOS DO PACIENTE -------------------");
         System.out.println("Insira o cpf: ");
-        String cpf = scan.next();
+        String cpf = scan.nextLine();
         System.out.println("Insira o nome: ");
-        String nome = scan.next();
+        String nome = scan.nextLine();
         System.out.println("Insira o número de telefone: ");
-        String telefone = scan.next();
+        String telefone = scan.nextLine();
         System.out.println("Insira o endereço: ");
-        String endereco = scan.next();
+        String endereco = scan.nextLine();
         System.out.println("Insira o sexo: ");
-        String sexo = scan.next();
+        String sexo = scan.nextLine();
         System.out.println("Insira o data de nascimento: ");
-        String datanascimento = scan.next();
+        String datanascimento = scan.nextLine();
         System.out.println("Insira a cor:   ");
-        String cor = scan.next();
+        String cor = scan.nextLine();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date datadecadastro = new Date();
         System.out.println("Filiação: ");
-        String filiacao = scan.next();
+        String filiacao = scan.nextLine();
         System.out.println("Email: ");
-        String email = scan.next();
-
+        String email = scan.nextLine();
         return new Paciente(nome, cpf, telefone, endereco, sexo, 0, datanascimento, cor, dateFormat.format(datadecadastro),filiacao,email);
     }
 
@@ -72,6 +71,10 @@ public class PacienteDAO implements DAOInterface {
             pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
         }
     }
 
@@ -89,7 +92,6 @@ public class PacienteDAO implements DAOInterface {
                                     "PC.email AS email " +
                                     "FROM paciente PC " +
                                     "INNER JOIN pessoa p on PC.pessoa_paciente_id = p.id; ";
-
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
         ResultSet rset;
@@ -128,37 +130,10 @@ public class PacienteDAO implements DAOInterface {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void atualizaPaciente(Paciente paciente, int id) {
-        String pacienteQuery = "UPDATE medico SET data_nascimento = ?, cor = ?, filiacao = ? ,email  = ? ,dataCadastro = ? WHERE  pessoa_paciente_id = ? RETURNING pessoa_paciente_id;";
-        String pessoaQuery = "UPDATE pessoa SET cpf = ?, nome = ?, numero_telefone = ?, endereco = ?, sexo = ? WHERE id = ?;";
-        Connection conn = provedor.pegaConexao();
-        PreparedStatement pstm;
-        try {
-            pstm = conn.prepareStatement(pacienteQuery);
-            pstm.setString(1, paciente.getDataNascimento());
-            pstm.setString(2, paciente.getCor());
-            pstm.setString(3, paciente.getFiliacao());
-            pstm.setString(4, paciente.getEmail());
-            pstm.setString(5, paciente.getDataCadastro());
-            pstm.setInt(6, id);
-            ResultSet resultSet = pstm.executeQuery();
-            int idPessoa = 0;
-            if (resultSet.next()) {
-                idPessoa = resultSet.getInt("pessoa_paciente_id");
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
             }
-            pstm = conn.prepareStatement(pessoaQuery);
-            pstm.setString(1, paciente.getCpf());
-            pstm.setString(2, paciente.getNome());
-            pstm.setString(3, paciente.getNumeroTelefone());
-            pstm.setString(4, paciente.getEndereco());
-            pstm.setString(5, paciente.getSexo());
-            pstm.setInt(6, idPessoa);
-            pstm.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -180,6 +155,10 @@ public class PacienteDAO implements DAOInterface {
             pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                provedor.fechaConexao(conn);
+            }
         }
     }
 }
