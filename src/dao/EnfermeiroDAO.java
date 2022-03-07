@@ -21,25 +21,25 @@ public class EnfermeiroDAO implements DAOInterface {
     public Enfermeiro preencheEnfermeiro() {
         Scanner scan = new Scanner(System.in);
         System.out.println("------------------- DADOS DO ENFERMEIRO -------------------");
-        System.out.println("Insira o nome");
-        String nome = scan.next();
         System.out.println("Insira o cpf: ");
-        String cpf = scan.next();
+        String cpf = scan.nextLine();
+        System.out.println("Insira o nome: ");
+        String nome = scan.nextLine();
         System.out.println("Insira o número de telefone: ");
-        String telefone = scan.next();
+        String telefone = scan.nextLine();
         System.out.println("Insira o endereço: ");
-        String endereco = scan.next();
+        String endereco = scan.nextLine();
         System.out.println("Insira o sexo:");
-        String sexo = scan.next();
+        String sexo = scan.nextLine();
         System.out.println("Insira o tipo de equipe: ");
-        String equipe = scan.next();
-        System.out.println("Insira se é superviso: ");
+        String equipe = scan.nextLine();
+        System.out.println("Insira se é supervisor: ");
         boolean supervisor = scan.nextBoolean();
         return new Enfermeiro(nome, cpf, telefone, endereco, sexo, 0, equipe, supervisor);
     }
 
     public void lista() {
-        String enfermeiroQuery= """
+        String enfermeiroQuery = """
                 SELECT p.cpf             AS cpf,
                        p.nome            AS nome,
                        p.numero_telefone AS telefone,
@@ -59,11 +59,11 @@ public class EnfermeiroDAO implements DAOInterface {
             resultSet = pstm.executeQuery();
             while (resultSet.next()) {
                 Enfermeiro enfermeiro = new Enfermeiro(resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("telefone"),
-                        resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"), 
+                        resultSet.getString("endereco"), resultSet.getString("sexo"), resultSet.getInt("id"),
                         resultSet.getString("tipo_equipe"), resultSet.getBoolean("e_supervisor"));
                 enfermeiros.add(enfermeiro);
             }
-            for (Enfermeiro enfermeiro: enfermeiros) {
+            for (Enfermeiro enfermeiro : enfermeiros) {
                 System.out.println("Id: " + enfermeiro.getId());
                 System.out.println("Nome: " + enfermeiro.getNome());
                 System.out.println("CPF: " + enfermeiro.getCpf());
@@ -146,17 +146,22 @@ public class EnfermeiroDAO implements DAOInterface {
     }
 
     public void remove(int id) {
+        String registroQuery = "DELETE FROM registro WHERE enfermeiro_id = ?;";
         String medicoQuery = "DELETE FROM enfermeiro WHERE id_enfermeiro = ? RETURNING pessoa_enfermeiro_id;";
         String pessoaQuery = "DELETE FROM pessoa WHERE id = ?;";
         Connection conn = provedor.pegaConexao();
         PreparedStatement pstm;
         try {
+            pstm = conn.prepareStatement(registroQuery);
+            pstm.setInt(1, id);
+            pstm.execute();
+
             pstm = conn.prepareStatement(medicoQuery);
             pstm.setInt(1, id);
             ResultSet resultSet = pstm.executeQuery();
             int idPessoa = 0;
             if (resultSet.next()) {
-                idPessoa = resultSet.getInt("pessoa_medico_id");
+                idPessoa = resultSet.getInt("pessoa_enfermeiro_id");
             }
             pstm = conn.prepareStatement(pessoaQuery);
             pstm.setInt(1, idPessoa);

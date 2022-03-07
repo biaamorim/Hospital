@@ -6,7 +6,7 @@ public class Ficha {
     private String tipoAtendimento;
     private String dataRegistro;
 
-    public Ficha(int id, String descricao, String tipoAtendimento,  String dataRegistro) {
+    public Ficha(int id, String descricao, String tipoAtendimento, String dataRegistro) {
         this.id = id;
         this.descricao = descricao;
         this.tipoAtendimento = tipoAtendimento;

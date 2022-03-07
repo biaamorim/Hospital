@@ -11,7 +11,7 @@ public class Registro {
     private String nomeMedico;
     private String nomeEnfermeiro;
 
-    public Registro(int id, String nomePaciente, String tipoAtendimento,String diaAtendimento,
+    public Registro(int id, String nomePaciente, String tipoAtendimento, String diaAtendimento,
                     String areaAtendimento, String nomeMedico, String nomeEnfermeiro) {
         this.id = id;
         this.nomePaciente = nomePaciente;

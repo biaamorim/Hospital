@@ -71,11 +71,11 @@ public class Main {
                     paciente.lista();
                     opcaoLocal = mostraMedicoOperacao(scan);
                 }
-            case 2 -> {
+                case 2 -> {
                     FichaDAO ficha = new FichaDAO();
                     ficha.lista();
                     opcaoLocal = mostrarCadastroNovoUsuario(scan);
-            }
+                }
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.lista();
@@ -145,15 +145,15 @@ public class Main {
                 }
                 case 0 -> System.out.println("------------------------------------------------");
                 case 1 -> {
-                     PacienteDAO paciente = new PacienteDAO();
-                     paciente.lista();
-                     opcaoLocal = mostraMedicoOperacao(scan);
+                    PacienteDAO paciente = new PacienteDAO();
+                    paciente.lista();
+                    opcaoLocal = mostraMedicoOperacao(scan);
                 }
-             case 2 -> {
-                 FichaDAO fichaDAO = new FichaDAO();
-                 fichaDAO.lista();
-                 opcaoLocal = mostraEnfermeiroOperacao(scan);
-            }
+                case 2 -> {
+                    FichaDAO fichaDAO = new FichaDAO();
+                    fichaDAO.lista();
+                    opcaoLocal = mostraEnfermeiroOperacao(scan);
+                }
                 case 3 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.lista();
@@ -177,7 +177,7 @@ public class Main {
                     pacienteDAO.cadastrarPaciente(paciente);
                     System.out.println("Paciente cadastrado com sucesso.");
                     opcaoLocal = mostraEnfermeiroOperacao(scan);
-                } 
+                }
                 case 7 -> {
                     RegistroDAO registroDAO = new RegistroDAO();
                     registroDAO.cadastraRegistro();

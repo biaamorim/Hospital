@@ -8,7 +8,7 @@ CREATE TABLE pessoa
     id              SERIAL PRIMARY KEY,
     cpf             VARCHAR(15),
     nome            VARCHAR(100),
-    numero_telefone VARCHAR(10),
+    numero_telefone VARCHAR(12),
     endereco        VARCHAR(100),
     sexo            VARCHAR(20)
 );
@@ -70,7 +70,7 @@ CREATE TABLE ficha
     id_ficha         SERIAL PRIMARY KEY,
     descricao        VARCHAR(100) NOT NULL,
     tipo_atendimento VARCHAR(50)  NOT NULL,
-    data_registro    VARCHAR(10) NOT NULL
+    data_registro    VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE registro
